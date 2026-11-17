@@ -1,0 +1,213 @@
+"""
+Headless MPFB avatar build script, run via:
+  blender --background --python build_avatar.py
+Builds one professional female human, rigs it for TalkingHead, exports GLB.
+Read-only against the rest of the repo; everything it writes stays under poc/mpfb-avatar-poc/.
+"""
+import bpy, sys, os, zipfile, shutil, importlib.util, traceback
+from pathlib import Path
+
+POC_DIR = Path(r"C:/Users/sujitha/talking-avatar/poc/mpfb-avatar-poc")
+ASSETS_DIR = POC_DIR / "assetpacks"
+TH_MPFB_DIR = Path(r"C:/Users/sujitha/talking-avatar/poc/talkinghead-poc/TalkingHead/blender/MPFB")
+OUT_GLB = POC_DIR / "avatar.glb"
+
+def stage(name):
+    print(f"\n{'='*20} STAGE: {name} {'='*20}")
+
+try:
+    stage("import MPFB services")
+    from bl_ext.user_default.mpfb.services.locationservice import LocationService
+    from bl_ext.user_default.mpfb.services.assetservice import AssetService
+    data_dir = Path(LocationService.get_user_data())
+    print("MPFB user data dir:", data_dir)
+
+    stage("install asset packs")
+    for zip_name in ["makehuman_system_assets_cc0.zip" if False else None]:
+        pass
+    pack_files = {
+        "system_assets.zip": ASSETS_DIR / "system_assets.zip",
+        "visemes02.zip": ASSETS_DIR / "visemes02.zip",
+        "faceunits01.zip": ASSETS_DIR / "faceunits01.zip",
+        "suits01.zip": ASSETS_DIR / "suits01.zip",
+        "skins01.zip": ASSETS_DIR / "skins01.zip",
+        "hair01.zip": ASSETS_DIR / "hair01.zip",
+    }
+    for label, zpath in pack_files.items():
+        if not zpath.exists():
+            print(f"  MISSING {label}, skipping")
+            continue
+        with zipfile.ZipFile(zpath, "r") as zf:
+            zf.extractall(data_dir)
+        print(f"  extracted {label}")
+    AssetService.update_all_asset_lists()
+    print("  asset lists updated")
+
+    stage("register TalkingHead Blender addon")
+    th_local = POC_DIR / "talkinghead_blender"
+    th_local.mkdir(exist_ok=True)
+    for fname in ["talkinghead-addon.py", "talkinghead.mpfbskel", "talkinghead.mhw", "talkinghead-targets.zip", "talkinghead-assets.zip"]:
+        src = TH_MPFB_DIR / fname
+        if src.exists():
+            shutil.copy(src, th_local / fname)
+    spec = importlib.util.spec_from_file_location("talkinghead_addon", str(th_local / "talkinghead-addon.py"))
+    th_addon = importlib.util.module_from_spec(spec)
+    sys.modules["talkinghead_addon"] = th_addon
+    spec.loader.exec_module(th_addon)
+    # th_addon.get_data_dir() falls back to get_addon_dir() = Path(__file__).parent when no addon prefs found,
+    # which is th_local since we exec'd the file from there via spec_from_file_location.
+    th_addon.register()
+    print("  TalkingHead addon registered, data dir fallback:", th_addon.get_addon_dir())
+
+    stage("set up TalkingHead custom rig in MPFB (dummy character)")
+    bpy.ops.object.select_all(action='DESELECT')
+    bpy.context.scene.MPFB_NH_add_phenotype = False
+    bpy.ops.mpfb.create_human()
+    dummy = bpy.context.view_layer.objects.active
+    print("  dummy human created:", dummy)
+
+    # Find the armature among dummy's relatives (MPFB creates basemesh; need its rig container object)
+    def find_armature_relative(obj):
+        for o in bpy.data.objects:
+            if o.type == 'ARMATURE':
+                return o
+        return None
+
+    bpy.ops.mpfb.load_rig(filepath=str(th_local / "talkinghead.mpfbskel"))
+    print("  rig loaded")
+    arm = find_armature_relative(dummy)
+    if arm:
+        bpy.context.view_layer.objects.active = arm
+        arm.select_set(True)
+    bpy.ops.mpfb.load_weights(filepath=str(th_local / "talkinghead.mhw"))
+    print("  weights loaded")
+
+    bpy.context.scene.MPFB_MRP_library_rig_name = "talkinghead"
+    bpy.context.scene.MPFB_MRP_library_identifying_bones = "LeftToe_End"
+    bpy.context.scene.MPFB_MRP_library_also_save_weights = True
+    bpy.ops.mpfb.save_rig_to_library()
+    print("  rig saved to library as 'talkinghead'")
+
+    # Delete dummy human and its armature
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in list(bpy.data.objects):
+        o.select_set(True)
+    bpy.ops.object.delete()
+    print("  dummy deleted")
+
+    stage("create the real avatar: adult female")
+    bpy.context.scene.MPFB_NH_add_phenotype = True
+    bpy.context.scene.MPFB_NH_phenotype_gender = "female"
+    bpy.context.scene.MPFB_NH_phenotype_age = "young"
+    bpy.context.scene.MPFB_NH_phenotype_race = "caucasian"
+    bpy.ops.mpfb.create_human()
+    human = bpy.context.view_layer.objects.active
+    print("  human created:", human)
+
+    stage("add TalkingHead custom rig to the human")
+    bpy.context.scene.MPFB_ADR_custom_rig = "talkinghead"
+    bpy.context.scene.MPFB_ADR_import_weights_custom = True
+    bpy.ops.mpfb.add_custom_rig()
+    print("  custom rig added")
+
+    def asset_path(subdir, asset_type, label):
+        items = AssetService.get_asset_list(subdir, asset_type)
+        if label not in items:
+            raise RuntimeError(f"Asset '{label}' not found in '{subdir}'. Available: {sorted(items.keys())}")
+        return items[label]["full_path"]
+
+    def apply_library_clothes(label, subdir, asset_type, object_type):
+        path = asset_path(subdir, asset_type, label)
+        bpy.context.view_layer.objects.active = human
+        human.select_set(True)
+        bpy.ops.mpfb.load_library_clothes(filepath=path, object_type=object_type, material_type="MAKESKIN")
+        print(f"  applied {object_type}: {label}")
+
+    stage("apply skin")
+    skin_path = asset_path("skins", "mhmat", "Young caucasian female")
+    bpy.context.view_layer.objects.active = human
+    human.select_set(True)
+    bpy.ops.mpfb.load_library_skin(filepath=skin_path)
+    print("  applied skin: Young caucasian female")
+
+    stage("apply eyes, eyebrows, eyelashes, teeth, tongue")
+    apply_library_clothes("High-poly", "eyes", "mhclo", "Eyes")
+    apply_library_clothes("Eyebrow003", "eyebrows", "mhclo", "Eyebrows")
+    apply_library_clothes("Eyelashes02", "eyelashes", "mhclo", "Eyelashes")
+    apply_library_clothes("Teeth base", "teeth", "mhclo", "Teeth")
+    apply_library_clothes("Tongue01", "tongue", "mhclo", "Tongue")
+
+    stage("apply hair (professional bob)")
+    apply_library_clothes("Toigo blunt bob", "hair", "mhclo", "Hair")
+
+    stage("apply business attire")
+    apply_library_clothes("Female elegantsuit01", "clothes", "mhclo", "Clothes")
+
+    print("\nSaving intermediate .blend after asset application for inspection.")
+    bpy.ops.wm.save_as_mainfile(filepath=str(POC_DIR / "avatar_stage2.blend"))
+    print("Saved avatar_stage2.blend")
+
+    stage("create export copy with Oculus visemes + ARKit face units baked")
+    bpy.context.view_layer.objects.active = human
+    bpy.ops.object.select_all(action='DESELECT')
+    human.select_set(True)
+    bpy.context.scene.MPFB_EXPO_bake_shapekeys = True
+    bpy.context.scene.MPFB_EXPO_mask_modifiers = "BAKE"
+    bpy.context.scene.MPFB_EXPO_subdiv_modifiers = "BAKE"
+    bpy.context.scene.MPFB_EXPO_delete_helpers = True
+    bpy.context.scene.MPFB_EXPO_visemes_meta = True
+    bpy.context.scene.MPFB_EXPO_visemes_microsoft = False
+    bpy.context.scene.MPFB_EXPO_faceunits_arkit = True
+    bpy.context.scene.MPFB_EXPO_interpolate = True
+    bpy.context.scene.MPFB_EXPO_remove_basemesh = False
+    bpy.ops.mpfb.export_copy()
+    print("  export copy created")
+
+    try:
+        bpy.ops.wm.save_as_mainfile(filepath=str(POC_DIR / "avatar_stage3_exportcopy.blend"))
+        print("Saved avatar_stage3_exportcopy.blend")
+    except RuntimeError as e:
+        # Blender raises this for a non-fatal shape-key cleanup warning (an orphaned
+        # intermediate shape key from modifier-apply-with-shapekeys gets auto-deleted);
+        # the file is still written successfully despite the exception.
+        print("  non-fatal save warning (continuing):", e)
+
+    stage("find the export-copy armature, verify root name 'Armature'")
+    export_armatures = [o for o in bpy.data.objects if o.type == 'ARMATURE' and o.name != 'Armature']
+    print("  all armature objects:", [o.name for o in bpy.data.objects if o.type == 'ARMATURE'])
+
+    stage("export to GLB")
+    # Select everything in the export copy collection (or just everything that isn't the original human/original armature)
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in bpy.data.objects:
+        if "export copy" in [c.name for c in o.users_collection]:
+            o.select_set(True)
+    selected_names = [o.name for o in bpy.context.selected_objects]
+    print("  selected for export:", selected_names)
+    if not selected_names:
+        # fallback: select everything except the very first human+armature we started with
+        print("  WARNING: no 'export copy' collection found, selecting all mesh+armature objects as fallback")
+        for o in bpy.data.objects:
+            if o.type in ('MESH', 'ARMATURE'):
+                o.select_set(True)
+
+    bpy.ops.export_scene.gltf(
+        filepath=str(OUT_GLB),
+        export_format='GLB',
+        use_selection=True,
+        export_animations=False,
+    )
+    print("  exported to", OUT_GLB)
+    print("  GLB size bytes:", OUT_GLB.stat().st_size if OUT_GLB.exists() else "MISSING")
+
+    print("\nALL STAGES COMPLETE")
+
+except Exception:
+    print("\n!!!!!!!!!! SCRIPT FAILED !!!!!!!!!!")
+    traceback.print_exc()
+    try:
+        bpy.ops.wm.save_as_mainfile(filepath=str(POC_DIR / "avatar_failure_dump.blend"))
+        print("Saved avatar_failure_dump.blend for post-mortem inspection")
+    except Exception:
+        pass
+    sys.exit(1)

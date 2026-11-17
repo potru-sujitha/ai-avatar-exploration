@@ -1,0 +1,46 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+armature object rotation_quaternion: <Quaternion (w=1.0000, x=0.0000, y=0.0000, z=0.0000)>
+armature object rotation_euler: <Euler (x=0.0000, y=0.0000, z=0.0000), order='XYZ'>
+armature object scale: <Vector (1.0000, 1.0000, 1.0000)>
+armature object matrix_world:
+ <Matrix 4x4 (1.0000, 0.0000, 0.0000, 0.0000)
+            (0.0000, 1.0000, 0.0000, 0.0000)
+            (0.0000, 0.0000, 1.0000, 0.0000)
+            (0.0000, 0.0000, 0.0000, 1.0000)>
+
+pose bones with non-identity pose transform: 0
+
+Head pose: loc=(0.0, 0.0, 0.0), rot_quat=(1.0, 0.0, 0.0, 0.0), rot_mode=XYZ
+Head data.bones matrix_local:
+<Matrix 4x4 ( 1.0000, -0.0002, -0.0000,  0.0004)
+            (-0.0000, -0.0757, -0.9971, -0.0231)
+            ( 0.0002,  0.9971, -0.0757,  1.4182)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+
+Jaw pose: loc=(0.0, 0.0, 0.0), rot_quat=(1.0, 0.0, 0.0, 0.0), rot_mode=XYZ
+Jaw data.bones matrix_local:
+<Matrix 4x4 (1.0000, -0.0000, -0.0000, -0.0000)
+            (0.0000, -0.5284,  0.8490, -0.0564)
+            (0.0000, -0.8490, -0.5284,  1.4679)
+            (0.0000,  0.0000,  0.0000,  1.0000)>
+
+Spine pose: loc=(0.0, 0.0, 0.0), rot_quat=(1.0, 0.0, 0.0, 0.0), rot_mode=XYZ
+Spine data.bones matrix_local:
+<Matrix 4x4 ( 1.0000, -0.0000,  0.0000,  0.0000)
+            ( 0.0000,  0.0564, -0.9984, -0.0212)
+            (-0.0000,  0.9984,  0.0564,  0.9920)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+
+Hips pose: loc=(0.0, 0.0, 0.0), rot_quat=(1.0, 0.0, 0.0, 0.0), rot_mode=XYZ
+Hips data.bones matrix_local:
+<Matrix 4x4 (0.9994, -0.0339,  0.0009,  0.0042)
+            (0.0020,  0.0331, -0.9994, -0.0253)
+            (0.0339,  0.9989,  0.0332,  0.8694)
+            (0.0000,  0.0000,  0.0000,  1.0000)>
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+
+Blender quit

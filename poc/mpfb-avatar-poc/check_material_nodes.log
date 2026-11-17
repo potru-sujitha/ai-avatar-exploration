@@ -1,0 +1,46 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+
+=== Human.teeth_base ===
+  TEX_IMAGE node 'diffuseTexture': image=teeth.png
+  Base Color input connected: True
+  Base Color linked FROM node: diffuseIntensity (type=MIX_RGB)
+    -> traced back through diffuseTexture (type=TEX_IMAGE)
+  all BSDF input links:
+    Base Color <- diffuseIntensity (MIX_RGB)
+    Alpha <- diffuseTexture (TEX_IMAGE)
+
+=== Human.high-poly ===
+  TEX_IMAGE node 'diffuseTexture': image=brown_eye.png
+  Base Color input connected: True
+  Base Color linked FROM node: diffuseIntensity (type=MIX_RGB)
+    -> traced back through diffuseTexture (type=TEX_IMAGE)
+  all BSDF input links:
+    Base Color <- diffuseIntensity (MIX_RGB)
+    Alpha <- diffuseTexture (TEX_IMAGE)
+
+=== Human.eyebrow003 ===
+  TEX_IMAGE node 'bumpmapTexture': image=eyebrow003.png
+  TEX_IMAGE node 'diffuseTexture': image=eyebrow003.png
+  Base Color input connected: True
+  Base Color linked FROM node: diffuseIntensity (type=MIX_RGB)
+    -> traced back through diffuseTexture (type=TEX_IMAGE)
+  all BSDF input links:
+    Base Color <- diffuseIntensity (MIX_RGB)
+    Alpha <- diffuseTexture (TEX_IMAGE)
+    Normal <- bumpmap (BUMP)
+
+=== Human.body ===
+  TEX_IMAGE node 'diffuseTexture': image=young_lightskinned_female_diffuse.png
+  Base Color input connected: True
+  Base Color linked FROM node: diffuseIntensity (type=MIX_RGB)
+    -> traced back through diffuseTexture (type=TEX_IMAGE)
+  all BSDF input links:
+    Base Color <- diffuseIntensity (MIX_RGB)
+    Alpha <- diffuseTexture (TEX_IMAGE)
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+
+Blender quit

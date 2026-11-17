@@ -1,0 +1,56 @@
+=== v4 (unfixed), 5 fresh-load samples at t=300ms ===
+[
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.04654816732665273,
+  "eyesLookDown": 0.2715699053784031
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.03490933130370228,
+  "eyesLookDown": 0.4328432400970148
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": -0.0054647673473561045,
+  "eyesLookDown": 0.33753941520344455
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.02675885021150968,
+  "eyesLookDown": 0.3038555942572503
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.01966196142259377,
+  "eyesLookDown": 0.3431377718321603
+ }
+]
+=== v5 (head-tilt fix applied), 5 fresh-load samples at t=300ms ===
+[
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.038148421577672016,
+  "eyesLookDown": 0.13058577273606864
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.00827717215854322,
+  "eyesLookDown": 0.4451139571532482
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.03125278612011181,
+  "eyesLookDown": 0.23281276879620352
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.007870704502764933,
+  "eyesLookDown": 0.4090189005135225
+ },
+ {
+  "headRotateX": 0,
+  "bodyRotateX": 0.00337272873049823,
+  "eyesLookDown": 0.4341640224780753
+ }
+]

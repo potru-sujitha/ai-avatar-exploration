@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+}}
+</script>
+<style>body,html{margin:0;background:#303030;width:100%;height:100%;}</style>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 10);
+camera.position.set(0, 1.5, 0.55);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(700, 700);
+document.body.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+const dir = new THREE.DirectionalLight(0xffffff, 2.0);
+dir.position.set(0.5, 1, 1);
+scene.add(dir);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 1.25, 0);
+
+const loader = new GLTFLoader();
+window.__ready = false;
+const GLB_URL = new URLSearchParams(location.search).get('glb') || './test_haircard_ribbon.glb';
+loader.load(GLB_URL, (gltf) => {
+  scene.add(gltf.scene);
+  window.__meshCount = 0;
+  gltf.scene.traverse(o => { if (o.isMesh) window.__meshCount++; });
+  window.__ready = true;
+}, undefined, (err) => { window.__error = err.message; });
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+window.__camera = camera;
+window.__controls = controls;
+</script>
+</body></html>

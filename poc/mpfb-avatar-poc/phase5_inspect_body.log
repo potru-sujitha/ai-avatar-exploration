@@ -1,0 +1,64 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+Material found: True
+blend_method: HASHED
+use_nodes: True
+Nodes:
+ - Material Output OUTPUT_MATERIAL ShaderNodeOutputMaterial
+     in: Surface linked_from: Principled BSDF default: None
+     in: Volume linked_from: None default: None
+     in: Displacement linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     in: Thickness linked_from: None default: 0.0
+ - Principled BSDF BSDF_PRINCIPLED ShaderNodeBsdfPrincipled
+     in: Base Color linked_from: diffuseIntensity default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Metallic linked_from: None default: 0.0
+     in: Roughness linked_from: None default: 0.699999988079071
+     in: IOR linked_from: None default: 1.4500000476837158
+     in: Alpha linked_from: diffuseTexture default: 1.0
+     in: Normal linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     in: Weight linked_from: None default: 0.0
+     in: Diffuse Roughness linked_from: None default: 0.0
+     in: Subsurface Weight linked_from: None default: 0.0
+     in: Subsurface Radius linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     in: Subsurface Scale linked_from: None default: 0.05000000074505806
+     in: Subsurface IOR linked_from: None default: 1.399999976158142
+     in: Subsurface Anisotropy linked_from: None default: 0.0
+     in: Specular IOR Level linked_from: None default: 0.5
+     in: Specular Tint linked_from: None default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Anisotropic linked_from: None default: 0.0
+     in: Anisotropic Rotation linked_from: None default: 0.0
+     in: Tangent linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     in: Transmission Weight linked_from: None default: 0.0
+     in: Coat Weight linked_from: None default: 0.0
+     in: Coat Roughness linked_from: None default: 0.0
+     in: Coat IOR linked_from: None default: 1.5
+     in: Coat Tint linked_from: None default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Coat Normal linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     in: Sheen Weight linked_from: None default: 0.0
+     in: Sheen Roughness linked_from: None default: 0.5
+     in: Sheen Tint linked_from: None default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Emission Color linked_from: None default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Emission Strength linked_from: None default: 0.0
+     in: Thin Film Thickness linked_from: None default: 0.0
+     in: Thin Film IOR linked_from: None default: 1.3300000429153442
+     out: BSDF ->  ['Material Output.Surface']
+ - diffuseIntensity MIX_RGB ShaderNodeMixRGB
+     in: Fac linked_from: None default: 1.0
+     in: Color1 linked_from: None default: <bpy_float[4], NodeSocketColor.default_value>
+     in: Color2 linked_from: diffuseTexture default: <bpy_float[4], NodeSocketColor.default_value>
+     out: Color ->  ['Principled BSDF.Base Color']
+ - diffuseTexture TEX_IMAGE ShaderNodeTexImage
+     in: Vector linked_from: None default: <bpy_float[3], NodeSocketVector.default_value>
+     out: Color ->  ['diffuseIntensity.Color2']
+     out: Alpha ->  ['Principled BSDF.Alpha']
+
+Principled BSDF found: True
+Alpha input linked: True
+Alpha fed by node: diffuseTexture TEX_IMAGE
+Image: young_lightskinned_female_diffuse.png
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v3.blend"
+
+Blender quit

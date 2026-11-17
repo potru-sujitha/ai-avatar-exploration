@@ -1,0 +1,74 @@
+{
+  "Human.body": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.eyebrow003": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.eyelashes02": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.female_elegantsuit01": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.high-poly": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.teeth_base": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.toigo_blunt_bob": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Human.tongue01": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.5,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": true,
+    "alpha_default_value": null
+  },
+  "Material": {
+    "blend_method": "HASHED",
+    "alpha_threshold": 0.0,
+    "shadow_method": null,
+    "use_backface_culling": false,
+    "alpha_input_connected": false,
+    "alpha_default_value": 1.0
+  }
+}

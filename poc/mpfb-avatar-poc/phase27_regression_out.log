@@ -1,0 +1,9 @@
+ready: true
+REGRESSION visemes/morphs: {"visemeCount":15,"arkitCount":57}
+REGRESSION lipsync (mid-speech, should have nonzero): [0,0,0.01425684683598024,0]
+REGRESSION blink max over 15s: 1
+REGRESSION gaze eyeLookOutLeft: 0
+REGRESSION mood=happy: {"mouthSmile":0.24473191739272548,"mouthFrownLeft":0,"browInnerUp":0.04222736245309712}
+REGRESSION mood=sad: {"mouthSmile":0.24666397343259086,"mouthFrownLeft":0.09986134476564204,"browInnerUp":-0.10337275735301846}
+REGRESSION mood=fear: {"mouthSmile":0.18892692730564614,"mouthFrownLeft":0.09736831332150128,"browInnerUp":0.7633954756614263}
+REGRESSION mood=neutral: {"mouthSmile":0.1760934997035467,"mouthFrownLeft":0.07796645033544898,"browInnerUp":0.4681961466288993}

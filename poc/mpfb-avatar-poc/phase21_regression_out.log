@@ -1,0 +1,20 @@
+READY: true
+STATUS: Ready. Oculus visemes: 15, other morphs: 57
+Engine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)
+Avatar: ./avatar_v13.glb
+Phase 19: eye/skin experiments loaded, OFF by default
+
+=== LIP-SYNC (dense sampling during real playback) ===
+lip-sync max viseme activation: 0 FAIL
+
+=== BLINK (22s window) ===
+blink max: 0 events: 0 FAIL
+
+=== GAZE (up/down) ===
+gaze up: 0.0561048643037273 gaze down: 0.31411722191434466
+
+=== MOODS (happy/sad/fear, 9s settle each) ===
+happy -> mouthSmile|mouthFrownLeft|browDownLeft: 0.21836896244788878|0|0.026220627899543672
+sad -> mouthSmile|mouthFrownLeft|browDownLeft: 0.18373466679286288|0.13778554011701116|0.013608902289840356
+fear -> mouthSmile|mouthFrownLeft|browDownLeft: 0.10082227922298209|0.24920845118983712|0.0052332644953471345
+neutral -> mouthSmile|mouthFrownLeft|browDownLeft: -0.01377552597487948|0.22848151206917752|0

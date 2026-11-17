@@ -1,0 +1,16 @@
+waiting for system_assets.zip to finish...
+system_assets done, downloading suits01...
+suits01 done (42624017 bytes), downloading skins01...
+skins01 done, downloading hair01...
+ALL DONE
+total 640409
+drwxr-xr-x 1 Admin 197121         0 Nov 14 11:18 .
+drwxr-xr-x 1 Admin 197121         0 Nov 14 11:16 ..
+-rw-r--r-- 1 Admin 197121    257821 Nov 14 11:10 faceunits01.zip
+-rw-r--r-- 1 Admin 197121       185 Nov 14 11:20 fetch_remaining.log
+-rwxr-xr-x 1 Admin 197121       639 Nov 14 11:18 fetch_remaining.sh
+-rw-r--r-- 1 Admin 197121 227775853 Nov 14 11:20 hair01.zip
+-rw-r--r-- 1 Admin 197121 104227958 Nov 14 11:19 skins01.zip
+-rw-r--r-- 1 Admin 197121  42624017 Nov 14 11:19 suits01.zip
+-rw-r--r-- 1 Admin 197121 280737770 Nov 14 11:19 system_assets.zip
+-rw-r--r-- 1 Admin 197121    130733 Nov 14 11:10 visemes02.zip

@@ -1,0 +1,4 @@
+waiting 5s settle time before testing...
+post-settle clock delta: 8681.900000000001
+lip-sync max (after 5s settle): 0 FAIL
+blink max (12s sample after settle+lipsync): 0 FAIL

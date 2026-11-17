@@ -1,0 +1,27 @@
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+Fra:1 Mem:364.48M (Peak 413.82M) | Time:01:10.91 | Rendering 1 / 64 samples
+Fra:1 Mem:364.48M (Peak 413.82M) | Time:01:12.90 | Rendering 25 / 64 samples
+Fra:1 Mem:364.48M (Peak 413.82M) | Time:01:14.97 | Rendering 50 / 64 samples
+Fra:1 Mem:364.48M (Peak 413.82M) | Time:01:16.12 | Rendering 64 / 64 samples
+Saved: 'C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\stage3_blender_render.png'
+Time: 01:16.99 (Saving: 00:00.59)
+
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+body found: <bpy_struct, Object("Human_export_copy") at 0x0000022B63FEF220> loc: <Vector (0.0000, 0.0000, 0.0000)>
+RENDERED stage3 export-copy check image
+
+=== export-copy mesh objects, visibility + hide states ===
+  Human.eyebrow003_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.eyelashes02_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.female_elegantsuit01_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.high-poly_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.teeth_base_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.toigo_blunt_bob_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human.tongue01_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+  Human_export_copy: hide_viewport=False, hide_render=False, hide_get=False
+
+Blender quit

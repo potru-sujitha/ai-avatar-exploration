@@ -1,0 +1,21 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+BEFORE head matrix:
+ <Matrix 4x4 ( 1.0000, -0.0002, -0.0000,  0.0004)
+            (-0.0000, -0.0757, -0.9971, -0.0231)
+            ( 0.0002,  0.9971, -0.0757,  1.4182)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+BEFORE local Z: <Vector (-0.0000, -0.9971, -0.0757)> angle from -Y: 4.343071833287811
+
+AFTER tail move, head matrix:
+ <Matrix 4x4 ( 1.0000, -0.0002,  0.0000,  0.0004)
+            (-0.0000, -0.1510, -0.9885, -0.0231)
+            ( 0.0002,  0.9885, -0.1510,  1.4182)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+AFTER local Z: <Vector (0.0000, -0.9885, -0.1510)> angle from -Y: 8.686091586383201
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v4.blend"
+
+Blender quit

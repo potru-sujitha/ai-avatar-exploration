@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TalkingHead POC v2 — streamAudio/streamStart with real viseme pipeline</title>
+<style>
+  body, html { width:100%; height:100%; margin:0; background:#202020; color:#eee; font-family:sans-serif; }
+  #avatar { display:block; width:900px; height:700px; }
+  #panel { position:fixed; top:10px; right:10px; width:380px; }
+  button { font-size:16px; padding:6px 14px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "talkinghead": "./TalkingHead/modules/talkinghead.mjs"
+}}
+</script>
+</head>
+<body>
+<div id="avatar"></div>
+<div id="panel">
+  <div id="status">loading...</div><br>
+  <button id="play" disabled>Stream real viseme timeline (existing pipeline)</button>
+</div>
+<script type="module">
+import { TalkingHead } from "talkinghead";
+
+const statusEl = document.getElementById('status');
+const head = new TalkingHead(document.getElementById('avatar'), { cameraView: 'upper' });
+
+let timeline, pcm16;
+window.__samples = [];
+
+async function init() {
+  await head.showAvatar({ url: './TalkingHead/avatars/brunette.glb', body: 'F', avatarMood: 'neutral' });
+  statusEl.textContent = 'avatar ready, loading timeline...';
+
+  const [tlRes, pcmRes] = await Promise.all([fetch('./timeline.json'), fetch('./parity-audio-f32.bin')]);
+  timeline = await tlRes.json();
+  const pcmBytes = await pcmRes.arrayBuffer();
+  pcm16 = new Float32Array(pcmBytes);
+
+  document.getElementById('play').disabled = false;
+  statusEl.textContent = 'ready. visemes in timeline: ' + timeline.visemes.length;
+  window.__ready = true;
+}
+
+document.getElementById('play').addEventListener('click', async () => {
+  try {
+    if (head.audioCtx.state === 'suspended') await head.audioCtx.resume();
+    statusEl.textContent = 'starting stream...';
+    await head.streamStart(
+      { lipsyncType: 'visemes', waitForAudioChunks: false, sampleRate: 16000 },
+      () => { statusEl.textContent = 'audio playback started'; },
+      () => { statusEl.textContent = 'audio playback ended'; window.__streamEnded = true; }
+    );
+    head.streamAudio({
+      audio: pcm16,
+      visemes: timeline.visemes,
+      vtimes: timeline.vtimes,
+      vdurations: timeline.vdurations,
+    });
+    head.streamNotifyEnd();
+    statusEl.textContent += ' | streamAudio called';
+    window.__streamStarted = true;
+  } catch (err) {
+    statusEl.textContent = 'ERROR: ' + err.message;
+    window.__streamError = err.message + '\n' + err.stack;
+  }
+});
+
+init();
+window.__head = head;
+</script>
+</body>
+</html>

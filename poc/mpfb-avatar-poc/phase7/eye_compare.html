@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><style>body,html{margin:0;background:#303030;}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
+</head><body><div id="c"></div><div id="status">loading</div>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+const AVATAR_URL = new URLSearchParams(location.search).get('avatar') || './eyes_original_test.glb';
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x303030);
+const camera = new THREE.PerspectiveCamera(30, 1, 0.01, 10);
+camera.position.set(0.03, 1.4989, 0.32);
+camera.lookAt(0.03, 1.4989, 0.1116);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(500, 500);
+document.getElementById('c').appendChild(renderer.domElement);
+scene.add(new THREE.AmbientLight(0xffffff, 1.6));
+const dir = new THREE.DirectionalLight(0xffffff, 2.2);
+dir.position.set(1, 2, 2);
+scene.add(dir);
+const loader = new GLTFLoader();
+loader.load(AVATAR_URL, (gltf) => {
+  scene.add(gltf.scene);
+  renderer.render(scene, camera);
+  document.getElementById('status').textContent = 'ready';
+}, undefined, (err) => { document.getElementById('status').textContent = 'ERROR: ' + err.message; });
+</script></body></html>

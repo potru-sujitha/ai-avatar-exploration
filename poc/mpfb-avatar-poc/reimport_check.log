@@ -1,0 +1,26 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+12:26:08 | INFO: Data are loaded, start creating Blender stuff
+12:26:08 | INFO: Blender create Mesh node eyebrow003.001
+12:26:08 | INFO: Blender create Mesh node eyelashes02.001
+12:26:08 | INFO: Blender create Mesh node female_elegantsuit01.001
+12:26:08 | INFO: Blender create Mesh node high-poly.001
+12:26:08 | INFO: Blender create Mesh node teeth_base.001
+12:26:08 | INFO: Blender create Mesh node bob_blunt.001
+12:26:09 | INFO: Blender create Mesh node tongue01.001
+12:26:09 | INFO: Blender create Mesh node base.003
+12:26:09 | INFO: glTF import finished in 0.93s
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Fra:1 Mem:359.95M (Peak 408.18M) | Time:01:04.98 | Rendering 1 / 64 samples
+Fra:1 Mem:359.95M (Peak 408.18M) | Time:01:12.33 | Rendering 25 / 64 samples
+Fra:1 Mem:359.95M (Peak 408.18M) | Time:01:20.37 | Rendering 50 / 64 samples
+Fra:1 Mem:359.95M (Peak 408.18M) | Time:01:24.89 | Rendering 64 / 64 samples
+Saved: 'C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\reimported_glb_render.png'
+Time: 01:25.75 (Saving: 00:00.38)
+
+objects after import: ['Human.eyebrow003_export_copy', 'Human.eyelashes02_export_copy', 'Human.female_elegantsuit01_export_copy', 'Human.high-poly_export_copy', 'Human.teeth_base_export_copy', 'Human.toigo_blunt_bob_export_copy', 'Human.tongue01_export_copy', 'Human_export_copy', 'Icosphere']
+RENDERED reimported GLB
+
+Blender quit

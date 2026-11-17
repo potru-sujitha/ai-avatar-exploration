@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Phase 13 — Professional Interviewer Avatar (refined framing/lighting)</title>
+<style>
+  body, html { width:100%; height:100%; margin:0; background:#202020; color:#eee; font-family:sans-serif; }
+  #avatar { display:block; width:900px; height:720px; }
+  #panel { position:fixed; top:10px; right:10px; width:320px; background:#1a1a1a; padding:14px; border-radius:8px; }
+  #status { font-size:13px; line-height:1.4; margin-bottom:10px; white-space:pre-wrap; }
+  .row { margin-bottom:8px; }
+  .row b { display:block; font-size:12px; color:#9ad; margin-bottom:4px; }
+  button { font-size:14px; padding:6px 10px; margin:2px 3px 2px 0; cursor:pointer; }
+  button:disabled { opacity:0.4; cursor:default; }
+  #log { font-size:11px; color:#888; max-height:120px; overflow-y:auto; margin-top:8px; border-top:1px solid #444; padding-top:6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "talkinghead": "./phase8-talkinghead-experiment/TalkingHead/modules/talkinghead.mjs"
+}}
+</script>
+</head>
+<body>
+<div id="avatar"></div>
+<div id="panel">
+  <div id="status">loading...</div>
+
+  <div class="row"><b>Speech / lip-sync</b>
+    <button id="play">▶ Play test audio</button>
+    <button id="stop" disabled>■ Stop</button>
+  </div>
+  <div class="row"><b>Blink</b><button id="blink">Trigger blink</button></div>
+  <div class="row"><b>Gaze</b>
+    <button id="lookUp">Look up</button>
+    <button id="lookDown">Look down</button>
+    <button id="lookCenter">Return to neutral</button>
+  </div>
+  <div class="row"><b>Mood</b>
+    <button id="moodHappy">Happy</button>
+    <button id="moodSad">Sad</button>
+    <button id="moodFear">Fear</button>
+    <button id="moodNeutral">Neutral</button>
+  </div>
+  <div class="row"><b>Camera</b><button id="reset">Reset avatar / camera</button></div>
+  <div id="log"></div>
+</div>
+<script type="module">
+import { TalkingHead } from "talkinghead";
+
+const statusEl = document.getElementById('status');
+const logEl = document.getElementById('log');
+function log(msg) {
+  const line = document.createElement('div');
+  line.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+  logEl.prepend(line);
+  console.log(msg);
+}
+
+// ?avatar=./avatar_v6.glb to compare against the clothing-swapped version once built.
+const AVATAR_URL = new URLSearchParams(location.search).get('avatar') || './avatar_v5.glb';
+
+// Phase 14 camera-init fix: the tuned head-and-shoulders values used to be applied via a
+// SEPARATE head.setView('head', {...}) call made after showAvatar() resolved
+// (applyHeadAndShouldersFraming(), below). That's the actual bug behind the "first frame is
+// off-center, a later frame is correct" symptom: TalkingHead's own showAvatar() already
+// calls setView(this.opt.cameraView) once internally while this.cameraClock is still null
+// (engine source ~line 1456/1532) -- and setView() only snaps the camera INSTANTLY when
+// cameraClock is null; every call after that eases in over a 1000ms tween instead (engine
+// source ~line 2759). So the internal call snapped instantly to the *default* framing
+// (cameraY/cameraDistance=0, since only cameraView was passed to the constructor), and the
+// later applyHeadAndShouldersFraming() call -- now with cameraClock no longer null --
+// started a 1000ms tween from that wrong default to the correct tuned position. The fix is
+// to give the FIRST call the right values to begin with, by passing them in the
+// constructor's own options object, so the one-and-only setView() call during showAvatar()
+// snaps straight to the correct framing. No applyHeadAndShouldersFraming() call is needed
+// anymore. (Verified first-frame screenshot: see Phase 14 report.)
+const head = new TalkingHead(document.getElementById('avatar'), {
+  cameraView: 'head', cameraDistance: 0.8, cameraY: 0.45, cameraX: 0,
+});
+
+let timeline, pcmInt16;
+
+// Phase 13 lighting fix: the "professional lighting" config reused since the GitHub
+// Alternatives research phase (ambient 1.6 / direct 22 / spot 8) was tuned against a
+// DIFFERENT avatar (TalkingHead's own brunette.glb) and is measurably too bright for this
+// MPFB avatar's own material response -- confirmed overexposed in the user's own
+// screenshot with that exact config already applied. ACES filmic tone mapping is already
+// enabled by TalkingHead itself (talkinghead.mjs:845), so the fix is intensity
+// recalibration, not a missing tone-mapping setup. Values below were chosen by rendering
+// 3 candidate configs side by side and comparing against the reference image's soft,
+// shadow-preserving look (see Phase 13 report) -- roughly 45% lower ambient, 35% lower
+// key light, and a softer/dimmer rim light than the original config.
+function applyRecalibratedLighting() {
+  // Final values chosen by rendering 3 candidates (ambient 0.85/0.6/1.1) side by side
+  // against the reference image; 0.6/9/2 was the closest match -- natural skin tone, no
+  // blown highlights, visible soft shadow under the jaw/chin. See Phase 13 report.
+  head.setLighting({
+    lightAmbientColor: 0xffffff, lightAmbientIntensity: 0.6,
+    lightDirectColor: 0xfff2e6,  lightDirectIntensity: 9,
+    lightDirectPhi: 0.95, lightDirectTheta: 1.25,
+    lightSpotColor: 0xaac4e8, lightSpotIntensity: 2,
+    lightSpotPhi: 1.2, lightSpotTheta: 4.8, lightSpotDispersion: 0.8,
+  });
+  head.renderer.shadowMap.enabled = true;
+  head.lightDirect.castShadow = true;
+  head.lightDirect.shadow.mapSize.width = 1024;
+  head.lightDirect.shadow.mapSize.height = 1024;
+  head.lightDirect.shadow.camera.near = 0.1;
+  head.lightDirect.shadow.camera.far = 3;
+  head.lightDirect.shadow.camera.left = -0.5;
+  head.lightDirect.shadow.camera.right = 0.5;
+  head.lightDirect.shadow.camera.top = 0.8;
+  head.lightDirect.shadow.camera.bottom = -0.3;
+  head.lightDirect.shadow.bias = -0.002;
+  head.armature.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+}
+
+function applyAnisotropicFiltering() {
+  const maxAniso = head.renderer.capabilities.getMaxAnisotropy();
+  head.armature.traverse((o) => {
+    if (!o.isMesh || !o.material) return;
+    const mats = Array.isArray(o.material) ? o.material : [o.material];
+    for (const m of mats) {
+      for (const key of ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap']) {
+        const tex = m[key];
+        if (tex && tex.isTexture) { tex.anisotropy = maxAniso; tex.needsUpdate = true; }
+      }
+    }
+  });
+}
+
+async function init() {
+  log('loading ' + AVATAR_URL + ' ...');
+  try {
+    await head.showAvatar({ url: AVATAR_URL, body: 'F', avatarMood: 'neutral' });
+  } catch (err) {
+    statusEl.textContent = 'LOAD ERROR: ' + err.message;
+    window.__loadError = err.message + '\n' + (err.stack || '');
+    log('LOAD ERROR: ' + err.message);
+    return;
+  }
+
+  let visemeCount = 0, arkitCount = 0;
+  head.armature.traverse((o) => {
+    if (o.morphTargetDictionary) {
+      const keys = Object.keys(o.morphTargetDictionary);
+      const v = keys.filter(k => k.startsWith('viseme_')).length;
+      if (v > visemeCount) { visemeCount = v; arkitCount = keys.filter(k => !k.startsWith('viseme_')).length; }
+    }
+  });
+  window.__visemeCount = visemeCount;
+  window.__arkitCount = arkitCount;
+
+  // Framing is now set directly in the TalkingHead constructor options (Phase 14 fix) --
+  // no separate call needed here, which is exactly what eliminates the off-center first frame.
+  applyRecalibratedLighting();
+  applyAnisotropicFiltering();
+
+  statusEl.textContent = `Ready. Oculus visemes: ${visemeCount}, other morphs: ${arkitCount}\nEngine: Phase 8 idle-gaze-fixed copy\nAvatar: ${AVATAR_URL}`;
+  log('avatar ready, visemes=' + visemeCount + ' morphs=' + arkitCount);
+
+  const [tlRes, wavRes] = await Promise.all([fetch('./timeline.json'), fetch('./parity-audio.wav')]);
+  timeline = await tlRes.json();
+  const wavBytes = await wavRes.arrayBuffer();
+  pcmInt16 = new Int16Array(wavBytes.slice(44));
+
+  document.getElementById('play').disabled = false;
+  window.__ready = true;
+  log('test audio + viseme timeline loaded (' + timeline.visemes.length + ' events)');
+}
+
+document.getElementById('play').addEventListener('click', async () => {
+  try {
+    if (head.audioCtx.state === 'suspended') await head.audioCtx.resume();
+    log('starting stream playback...');
+    document.getElementById('stop').disabled = false;
+    await head.streamStart(
+      { lipsyncType: 'visemes', waitForAudioChunks: false, sampleRate: 16000 },
+      () => log('audio playback started'),
+      () => { log('audio playback ended'); document.getElementById('stop').disabled = true; }
+    );
+    head.streamAudio({ audio: pcmInt16, visemes: timeline.visemes, vtimes: timeline.vtimes, vdurations: timeline.vdurations });
+    head.streamNotifyEnd();
+  } catch (err) {
+    log('ERROR: ' + err.message);
+    window.__streamError = err.message + '\n' + err.stack;
+  }
+});
+document.getElementById('stop').addEventListener('click', () => { head.streamStop(); document.getElementById('stop').disabled = true; log('stream stopped by user'); });
+document.getElementById('blink').addEventListener('click', () => {
+  head.setValue('eyeBlinkLeft', 1, 120); head.setValue('eyeBlinkRight', 1, 120);
+  setTimeout(() => { head.setValue('eyeBlinkLeft', 0, 120); head.setValue('eyeBlinkRight', 0, 120); }, 150);
+  log('manual blink triggered');
+});
+document.getElementById('lookUp').addEventListener('click', () => {
+  const r = document.getElementById('avatar').getBoundingClientRect();
+  head.lookAt(r.left + r.width / 2, r.top, 1200); log('lookAt(up) called');
+});
+document.getElementById('lookDown').addEventListener('click', () => {
+  const r = document.getElementById('avatar').getBoundingClientRect();
+  head.lookAt(r.left + r.width / 2, r.bottom, 1200); log('lookAt(down) called');
+});
+document.getElementById('lookCenter').addEventListener('click', () => { head.lookAt(null, null, 1000); log('lookAt(center/camera) called'); });
+document.getElementById('moodHappy').addEventListener('click', () => { head.setMood('happy'); log('mood -> happy'); });
+document.getElementById('moodSad').addEventListener('click', () => { head.setMood('sad'); log('mood -> sad'); });
+document.getElementById('moodFear').addEventListener('click', () => { head.setMood('fear'); log('mood -> fear'); });
+document.getElementById('moodNeutral').addEventListener('click', () => { head.setMood('neutral'); log('mood -> neutral'); });
+document.getElementById('reset').addEventListener('click', () => {
+  head.setMood('neutral'); head.lookAt(null, null, 500); if (head.resetLips) head.resetLips();
+  // User-triggered, so a brief tween back to the tuned framing here is fine (unlike the
+  // silent initial-load path this phase fixed) -- it's visibly a deliberate reset action.
+  head.setView('head', { cameraDistance: 0.8, cameraY: 0.45, cameraX: 0 });
+  log('avatar reset to neutral');
+});
+
+init();
+window.__head = head;
+window.addEventListener('error', (e) => log('window error: ' + e.message));
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+LOAD STATUS: avatar ready in 5243ms. viseme targets: 15, other morphs: 57 | timeline visemes: 34
+LOAD INFO: {"loadTimeMs":5243.300000000745,"visemeCount":15,"arkitCount":57,"shadowMeshCount":8}
+captured neutral_front.png
+LIPSYNC viseme samples: [
+                    0,                   0,
+                    0,                   0,
+  0.44447081616357403, 0.44447081616357403,
+  0.44447081616357403,  0.6131646806380513,
+                    0,                   0,
+                    0,                   0,
+                    0,                   0,
+                    0,                   0
+]
+LIPSYNC works: true
+BLINK max value: 1
+BLINK works: true
+GAZE: {"eyeLookOutLeft":0.18334244772290093,"eyeLookInRight":0.18334244772290093}
+GAZE works: true
+MOOD samples: {"happy":0.07176392231400908,"sad":0.38926630477392643,"angry":-0.20832133469985387}
+captured neutral_final.png
+PAGE ERRORS: 0

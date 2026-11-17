@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Phase 19 — Clearcoat Eyes + Runtime Skin Shader Experiment</title>
+<style>
+  body, html { width:100%; height:100%; margin:0; background:linear-gradient(180deg, #4a5568 0%, #5a6478 100%); color:#eee; font-family:sans-serif; }
+  #avatar { display:block; width:900px; height:720px; }
+  #panel { position:fixed; top:10px; right:10px; width:340px; background:#1a1a1a; padding:14px; border-radius:8px; }
+  #status { font-size:13px; line-height:1.4; margin-bottom:10px; white-space:pre-wrap; }
+  .row { margin-bottom:8px; }
+  .row b { display:block; font-size:12px; color:#9ad; margin-bottom:4px; }
+  button { font-size:14px; padding:6px 10px; margin:2px 3px 2px 0; cursor:pointer; }
+  button:disabled { opacity:0.4; cursor:default; }
+  #log { font-size:11px; color:#888; max-height:160px; overflow-y:auto; margin-top:8px; border-top:1px solid #444; padding-top:6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "talkinghead": "./phase8-talkinghead-experiment/TalkingHead/modules/talkinghead.mjs"
+}}
+</script>
+</head>
+<body>
+<div id="avatar"></div>
+<div id="panel">
+  <div id="status">loading...</div>
+  <div class="row"><b>Speech / lip-sync</b>
+    <button id="play">▶ Play test audio</button>
+    <button id="stop" disabled>■ Stop</button>
+  </div>
+  <div class="row"><b>Blink</b><button id="blink">Trigger blink</button></div>
+  <div class="row"><b>Gaze</b>
+    <button id="lookUp">Look up</button>
+    <button id="lookDown">Look down</button>
+    <button id="lookCenter">Return to neutral</button>
+  </div>
+  <div class="row"><b>Mood</b>
+    <button id="moodHappy">Happy</button>
+    <button id="moodSad">Sad</button>
+    <button id="moodFear">Fear</button>
+    <button id="moodNeutral">Neutral</button>
+  </div>
+  <div class="row"><b>Phase 19 experiments</b>
+    <button id="eyeOn">Eye clearcoat ON</button>
+    <button id="eyeOff">OFF</button><br>
+    <button id="skinOn">Skin SSS-approx ON</button>
+    <button id="skinOff">OFF</button>
+  </div>
+  <div class="row"><b>Camera</b><button id="reset">Reset avatar / camera</button></div>
+  <div id="log"></div>
+</div>
+<script type="module">
+import * as THREE from "three";
+import { TalkingHead } from "talkinghead";
+
+const statusEl = document.getElementById('status');
+const logEl = document.getElementById('log');
+function log(msg) {
+  const line = document.createElement('div');
+  line.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+  logEl.prepend(line);
+  console.log(msg);
+}
+
+const AVATAR_URL = new URLSearchParams(location.search).get('avatar') || './avatar_v13.glb';
+
+const head = new TalkingHead(document.getElementById('avatar'), {
+  cameraView: 'head', cameraDistance: 0.8, cameraY: 0.45, cameraX: 0,
+});
+
+let timeline, pcmInt16;
+let eyeMesh = null, eyeOrigMaterial = null, eyeClearcoatMaterial = null;
+let skinMesh = null, skinOrigMaterial = null, skinSSSMaterial = null;
+
+function applyRecalibratedLighting() {
+  head.setLighting({
+    lightAmbientColor: 0xffffff, lightAmbientIntensity: 0.6,
+    lightDirectColor: 0xfff2e6,  lightDirectIntensity: 9,
+    lightDirectPhi: 0.95, lightDirectTheta: 1.25,
+    lightSpotColor: 0xaac4e8, lightSpotIntensity: 2,
+    lightSpotPhi: 1.2, lightSpotTheta: 4.8, lightSpotDispersion: 0.8,
+  });
+  head.renderer.shadowMap.enabled = true;
+  head.lightDirect.castShadow = true;
+  head.lightDirect.shadow.mapSize.width = 1024;
+  head.lightDirect.shadow.mapSize.height = 1024;
+  head.lightDirect.shadow.camera.near = 0.1;
+  head.lightDirect.shadow.camera.far = 3;
+  head.lightDirect.shadow.camera.left = -0.5;
+  head.lightDirect.shadow.camera.right = 0.5;
+  head.lightDirect.shadow.camera.top = 0.8;
+  head.lightDirect.shadow.camera.bottom = -0.3;
+  head.lightDirect.shadow.bias = -0.002;
+  head.armature.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+}
+
+function applyTextureAnisotropy() {
+  const maxAniso = head.renderer.capabilities.getMaxAnisotropy();
+  head.armature.traverse((o) => {
+    if (!o.isMesh || !o.material) return;
+    const mats = Array.isArray(o.material) ? o.material : [o.material];
+    for (const m of mats) {
+      for (const key of ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap']) {
+        const tex = m[key];
+        if (tex && tex.isTexture) { tex.anisotropy = maxAniso; tex.needsUpdate = true; }
+      }
+    }
+  });
+}
+function applyAnisotropicFiltering() {
+  applyTextureAnisotropy();
+  setTimeout(applyTextureAnisotropy, 3000);
+}
+
+// === Experiment 1: real-time clearcoat on the eye material ===
+// Phase 19 Blender inspection found NO separate cornea mesh exists -- "Human.high-poly" is a
+// single 1064-vertex eyeball mesh with one material covering iris+sclera+cornea together.
+// This rules out `transmission` (a true transparent layer needs separate geometry to look right
+// -- applying it to this single opaque-colored surface would make the iris itself see-through,
+// which is wrong). Clearcoat is the correct tool for exactly this situation: a thin, energy-
+// conserving glossy layer ON TOP of an existing single-surface material, no extra geometry
+// needed, and a genuine KHR_materials_clearcoat-equivalent Three.js renders live.
+function findMeshByMaterialNameSubstr(sub) {
+  let found = null;
+  head.armature.traverse((o) => {
+    if (found || !o.isMesh || !o.material) return;
+    const mats = Array.isArray(o.material) ? o.material : [o.material];
+    if (mats.some((m) => m.name && m.name.toLowerCase().includes(sub))) found = o;
+  });
+  return found;
+}
+
+function setupEyeClearcoat() {
+  eyeMesh = findMeshByMaterialNameSubstr('high-poly');
+  if (!eyeMesh) { log('Eye clearcoat: mesh not found (looked for material containing "high-poly")'); return; }
+  const orig = Array.isArray(eyeMesh.material) ? eyeMesh.material[0] : eyeMesh.material;
+  eyeOrigMaterial = orig;
+  // GLTFLoader only instantiates MeshPhysicalMaterial when the source glTF already carries a
+  // "physical" extension; this eye material has none (confirmed: Specular IOR Level was still
+  // Blender's 0.5 default, no KHR_materials_specular in the exported file), so it almost
+  // certainly loaded as a plain MeshStandardMaterial here -- build a real MeshPhysicalMaterial
+  // copying its actual properties rather than assuming .clearcoat already exists on it.
+  const phys = new THREE.MeshPhysicalMaterial();
+  THREE.MeshStandardMaterial.prototype.copy.call(phys, orig);
+  phys.clearcoat = 0.7;
+  phys.clearcoatRoughness = 0.08;
+  // Reduce the base specular sheen slightly too -- same plastic-sheen mechanism Phase 14/18
+  // already fixed on suit/hair/skin was never applied to the eye material (confirmed: 0.5
+  // default). ior ~1.38 is closer to real corneal tissue (~1.376) than Blender's generic 1.45 default.
+  phys.ior = 1.38;
+  eyeClearcoatMaterial = phys;
+  log('Eye clearcoat material built (clearcoat=0.7, clearcoatRoughness=0.08, ior=1.38)');
+}
+
+document.getElementById('eyeOn').addEventListener('click', () => {
+  if (!eyeMesh) { log('Eye mesh not ready yet'); return; }
+  eyeMesh.material = eyeClearcoatMaterial;
+  log('Eye clearcoat: ON');
+});
+document.getElementById('eyeOff').addEventListener('click', () => {
+  if (!eyeMesh) return;
+  eyeMesh.material = eyeOrigMaterial;
+  log('Eye clearcoat: OFF (reverted to original material)');
+});
+
+// === Experiment 2: runtime wrap-around / thickness-approx "fake SSS" skin shader ===
+// Phase 14 confirmed true subsurface scattering cannot survive glTF export (no extension for
+// it). This does NOT mean Three.js's live renderer can't approximate the same *visual* cue
+// at runtime -- real skin shows a warm reddish glow specifically at grazing angles on thin
+// tissue (nose bridge, ear rims, lip edges), which is well-approximated in real-time
+// rendering (a standard game-engine technique) via a fresnel/rim-based warm emissive term,
+// without touching the glTF material system or needing a real thickness map. Implemented via
+// onBeforeCompile injecting a rim term into the fragment shader of a cloned MeshPhysicalMaterial.
+function setupSkinSSSApprox() {
+  skinMesh = findMeshByMaterialNameSubstr('body');
+  if (!skinMesh) { log('Skin SSS-approx: mesh not found (looked for material containing "body")'); return; }
+  const orig = Array.isArray(skinMesh.material) ? skinMesh.material[0] : skinMesh.material;
+  skinOrigMaterial = orig;
+  const mat = new THREE.MeshPhysicalMaterial();
+  THREE.MeshStandardMaterial.prototype.copy.call(mat, orig);
+  mat.onBeforeCompile = (shader) => {
+    shader.uniforms.sssStrength = { value: 0.22 };
+    shader.uniforms.sssColor = { value: new THREE.Color(0xff6a3c) };
+    // Registering uniforms on `shader.uniforms` only wires up the WebGLProgram binding; the
+    // GLSL source itself still needs explicit `uniform` declarations added, or the fragment
+    // shader fails to compile with "undeclared identifier" (caught by actually running this,
+    // not assumed -- see Phase 19 report). Prepend the declarations to the fragment source.
+    shader.fragmentShader = 'uniform float sssStrength;\nuniform vec3 sssColor;\n' + shader.fragmentShader.replace(
+      '#include <dithering_fragment>',
+      `
+      // Phase 19 fake-SSS rim term: warm glow at grazing angles, approximating light
+      // transmitting through thin tissue (nose/ear/lip edges) -- kept subtle per the task's
+      // explicit warning against excessive brightness or an artificial red tone.
+      float sssFresnel = pow(1.0 - saturate(dot(normalize(vNormal), normalize(vViewPosition))), 2.5);
+      gl_FragColor.rgb += sssColor * sssFresnel * sssStrength;
+      #include <dithering_fragment>
+      `
+    );
+    mat.userData.shader = shader;
+  };
+  mat.customProgramCacheKey = () => 'phase19-sss';
+  skinSSSMaterial = mat;
+  log('Skin SSS-approx material built (rim strength=0.22, warm-orange tint)');
+}
+
+document.getElementById('skinOn').addEventListener('click', () => {
+  if (!skinMesh) { log('Skin mesh not ready yet'); return; }
+  skinMesh.material = skinSSSMaterial;
+  log('Skin SSS-approx: ON');
+});
+document.getElementById('skinOff').addEventListener('click', () => {
+  if (!skinMesh) return;
+  skinMesh.material = skinOrigMaterial;
+  log('Skin SSS-approx: OFF (reverted to original material)');
+});
+
+async function init() {
+  log('loading ' + AVATAR_URL + ' ...');
+  try {
+    await head.showAvatar({ url: AVATAR_URL, body: 'F', avatarMood: 'neutral' });
+  } catch (err) {
+    statusEl.textContent = 'LOAD ERROR: ' + err.message;
+    window.__loadError = err.message + '\n' + (err.stack || '');
+    log('LOAD ERROR: ' + err.message);
+    return;
+  }
+
+  let visemeCount = 0, arkitCount = 0;
+  head.armature.traverse((o) => {
+    if (o.morphTargetDictionary) {
+      const keys = Object.keys(o.morphTargetDictionary);
+      const v = keys.filter(k => k.startsWith('viseme_')).length;
+      if (v > visemeCount) { visemeCount = v; arkitCount = keys.filter(k => !k.startsWith('viseme_')).length; }
+    }
+  });
+  window.__visemeCount = visemeCount;
+  window.__arkitCount = arkitCount;
+
+  applyRecalibratedLighting();
+  applyAnisotropicFiltering();
+  setupEyeClearcoat();
+  setupSkinSSSApprox();
+
+  statusEl.textContent = `Ready. Oculus visemes: ${visemeCount}, other morphs: ${arkitCount}\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ${AVATAR_URL}\nPhase 19: eye/skin experiments loaded, OFF by default`;
+  log('avatar ready, visemes=' + visemeCount + ' morphs=' + arkitCount);
+  window.__ready = true;
+
+  const [tlRes, wavRes] = await Promise.all([fetch('./timeline.json'), fetch('./parity-audio.wav')]);
+  timeline = await tlRes.json();
+  const wavBytes = await wavRes.arrayBuffer();
+  pcmInt16 = new Int16Array(wavBytes.slice(44));
+  document.getElementById('play').disabled = false;
+  log('test audio + viseme timeline loaded (' + timeline.visemes.length + ' events)');
+}
+
+document.getElementById('play').addEventListener('click', async () => {
+  try {
+    if (head.audioCtx.state === 'suspended') await head.audioCtx.resume();
+    log('starting stream playback...');
+    document.getElementById('stop').disabled = false;
+    await head.streamStart(
+      { lipsyncType: 'visemes', waitForAudioChunks: false, sampleRate: 16000 },
+      () => log('audio playback started'),
+      () => { log('audio playback ended'); document.getElementById('stop').disabled = true; }
+    );
+    head.streamAudio({ audio: pcmInt16, visemes: timeline.visemes, vtimes: timeline.vtimes, vdurations: timeline.vdurations });
+    head.streamNotifyEnd();
+  } catch (err) {
+    log('ERROR: ' + err.message);
+    window.__streamError = err.message + '\n' + err.stack;
+  }
+});
+document.getElementById('stop').addEventListener('click', () => { head.streamStop(); document.getElementById('stop').disabled = true; log('stream stopped by user'); });
+document.getElementById('blink').addEventListener('click', () => {
+  head.setValue('eyeBlinkLeft', 1, 120); head.setValue('eyeBlinkRight', 1, 120);
+  setTimeout(() => { head.setValue('eyeBlinkLeft', 0, 120); head.setValue('eyeBlinkRight', 0, 120); }, 150);
+  log('manual blink triggered');
+});
+document.getElementById('lookUp').addEventListener('click', () => {
+  const r = document.getElementById('avatar').getBoundingClientRect();
+  head.lookAt(r.left + r.width / 2, r.top, 1200); log('lookAt(up) called');
+});
+document.getElementById('lookDown').addEventListener('click', () => {
+  const r = document.getElementById('avatar').getBoundingClientRect();
+  head.lookAt(r.left + r.width / 2, r.bottom, 1200); log('lookAt(down) called');
+});
+document.getElementById('lookCenter').addEventListener('click', () => { head.lookAt(null, null, 1000); log('lookAt(center/camera) called'); });
+document.getElementById('moodHappy').addEventListener('click', () => { head.setMood('happy'); log('mood -> happy'); });
+document.getElementById('moodSad').addEventListener('click', () => { head.setMood('sad'); log('mood -> sad'); });
+document.getElementById('moodFear').addEventListener('click', () => { head.setMood('fear'); log('mood -> fear'); });
+document.getElementById('moodNeutral').addEventListener('click', () => { head.setMood('neutral'); log('mood -> neutral'); });
+document.getElementById('reset').addEventListener('click', () => {
+  head.setMood('neutral'); head.lookAt(null, null, 500); if (head.resetLips) head.resetLips();
+  head.setView('head', { cameraDistance: 0.8, cameraY: 0.45, cameraX: 0 });
+  log('avatar reset to neutral');
+});
+
+init();
+window.__head = head;
+window.addEventListener('error', (e) => log('window error: ' + e.message));
+</script>
+</body>
+</html>

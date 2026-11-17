@@ -1,0 +1,130 @@
+{
+ "v17": [
+  {
+   "shot": "front_full",
+   "label": "1. Front-facing full head and shoulders",
+   "outPng": "phase45_v17_front_full.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 1000,
+   "errorCount": 1,
+   "errors": [
+    "[console.error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "shot": "hairline_macro",
+   "label": "2. Close-up of centre part and hairline",
+   "outPng": "phase45_v17_hairline_macro.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 799.9999999999999,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "temple_left",
+   "label": "3a. Left temple region",
+   "outPng": "phase45_v17_temple_left.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 450.50000000000006,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "temple_right",
+   "label": "3b. Right temple region",
+   "outPng": "phase45_v17_temple_right.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 533.3333333333334,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "top_front_coverage",
+   "label": "4. Top/front hair coverage",
+   "outPng": "phase45_v17_top_front_coverage.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 533.3333333333334,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "shoulder_fleck",
+   "label": "5. Shoulder area (known fleck defect), Phase 17 framing",
+   "outPng": "phase45_v17_shoulder_fleck.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v17.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 400.00000000000006,
+   "errorCount": 0,
+   "errors": []
+  }
+ ],
+ "v19": [
+  {
+   "shot": "front_full",
+   "label": "1. Front-facing full head and shoulders",
+   "outPng": "phase45_v19_front_full.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 533.3333333333334,
+   "errorCount": 1,
+   "errors": [
+    "[console.error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "shot": "hairline_macro",
+   "label": "2. Close-up of centre part and hairline",
+   "outPng": "phase45_v19_hairline_macro.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 314.3666666666674,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "temple_left",
+   "label": "3a. Left temple region",
+   "outPng": "phase45_v19_temple_left.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 382.8333333094919,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "temple_right",
+   "label": "3b. Right temple region",
+   "outPng": "phase45_v19_temple_right.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 245.79999999999927,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "top_front_coverage",
+   "label": "4. Top/front hair coverage",
+   "outPng": "phase45_v19_top_front_coverage.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 400.00000000000006,
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "shot": "shoulder_fleck",
+   "label": "5. Shoulder area (known fleck defect), Phase 17 framing",
+   "outPng": "phase45_v19_shoulder_fleck.png",
+   "ready": true,
+   "status": "Ready. Oculus visemes: 15, other morphs: 57\nEngine: Phase 8 idle-gaze-fixed copy (+Phase17 smile)\nAvatar: ./avatar_v19_candidate.glb\nPhase 19: eye/skin experiments loaded, OFF by default",
+   "cameraClock": 333.33333333333337,
+   "errorCount": 0,
+   "errors": []
+  }
+ ]
+}

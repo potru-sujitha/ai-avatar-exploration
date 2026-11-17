@@ -1,0 +1,318 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+
+==================== STAGE: import MPFB services ====================
+MPFB user data dir: C:\Users\Admin\AppData\Roaming\Blender Foundation\Blender\4.5\extensions\.user\user_default\mpfb\data
+
+==================== STAGE: install asset packs ====================
+  extracted system_assets.zip
+  extracted visemes02.zip
+  extracted faceunits01.zip
+  extracted suits01.zip
+  extracted skins01.zip
+  extracted hair01.zip
+  asset lists updated
+
+==================== STAGE: register TalkingHead Blender addon ====================
+  TalkingHead addon registered, data dir fallback: C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\talkinghead_blender
+
+==================== STAGE: set up TalkingHead custom rig in MPFB (dummy character) ====================
+Info: Human created.
+  dummy human created: <bpy_struct, Object("Human") at 0x000002DC3095CF08>
+  rig loaded
+Info: Weights applied
+  weights loaded
+Info: Rig saved to C:\Users\Admin\AppData\Roaming\Blender Foundation\Blender\4.5\extensions\.user\user_default\mpfb\data\rigs\talkinghead.json
+Info: Weights saved to C:\Users\Admin\AppData\Roaming\Blender Foundation\Blender\4.5\extensions\.user\user_default\mpfb\data\rigs\weights.talkinghead.json
+  rig saved to library as 'talkinghead'
+  dummy deleted
+
+==================== STAGE: create the real avatar: adult female ====================
+Info: Human created. You can adjust the phenotype values on the modeling panel.
+  human created: <bpy_struct, Object("Human") at 0x000002DC303DA408>
+
+==================== STAGE: add TalkingHead custom rig to the human ====================
+Info: Custom rig 'talkinghead' was added
+  custom rig added
+
+==================== STAGE: apply skin ====================
+Info: Skin was loaded
+  applied skin: Young caucasian female
+
+==================== STAGE: apply eyes, eyebrows, eyelashes, teeth, tongue ====================
+Info: Clothes were loaded
+  applied Eyes: High-poly
+[WARN ] material.mhmaterial ....................: Patching input material line to cater for non-normalized key ('bumpTexture', 'bumpmapTexture')
+Info: Clothes were loaded
+  applied Eyebrows: Eyebrow003
+Info: Clothes were loaded
+  applied Eyelashes: Eyelashes02
+Info: Clothes were loaded
+  applied Teeth: Teeth base
+Info: Clothes were loaded
+  applied Tongue: Tongue01
+
+==================== STAGE: Phase 25: skip stock MPFB hair entirely -- replaced with procedural strand-ribbon hair, added after the export-copy/bone-fix stages below (see 'Phase 25 procedural hair' stage near export) ====================
+
+==================== STAGE: apply business attire ====================
+Info: Clothes were loaded
+  applied Clothes: Toigo female suit 2
+
+==================== STAGE: diagnostic: confirm real material names before swapping textures ====================
+  materials present: ['Human.body', 'Human.eyebrow003', 'Human.eyelashes02', 'Human.high-poly', 'Human.teeth_base', 'Human.toigo_female_suit_2', 'Human.tongue01', 'Material']
+  WARNING: expected material 'Human.long01' not found in material list above
+
+==================== STAGE: FIX (Phase 13b): recolor hair/skin/suit base-color textures ====================
+  WARNING: material 'Human.long01' not found, skipping recolor
+  textures recolored: [('Human.body', 'young_lightskinned_female_diffuse.png', '->', 'WarmNeutralSkin.png'), ('Human.toigo_female_suit_2', 'Fsuit2.png', '->', 'Suit2Black_v2.png'), ('Human.high-poly', 'brown_eye.png', '->', 'NaturalBrownEye.png')]
+  WARNING: expected 4 materials recolored, got 3
+
+==================== STAGE: FIX (Phase 16): flatten the suit's NORMAL map over the removed-tie/ascot region too ====================
+  suit normal texture: Fsuit2-norm.png -> Suit2NormNoTie_v2.png (Phase 20 re-fix)
+
+==================== STAGE: FIX (Phase 14): skin subsurface depth + suit specular/roughness, not texture ====================
+  suit material: Roughness 0.700->0.85, Specular IOR Level 0.500->0.18
+  skin material: Subsurface Weight 0.000->0.25 (radius already [1.0, 0.2, 0.1], untouched)
+
+==================== STAGE: FIX (Phase 18): reduce skin and hair Specular IOR Level -- same plastic-sheen mechanism Phase 14 already fixed on the suit ====================
+  WARNING: Human.long01 material not found for property fix
+
+==================== STAGE: FIX (Phase 20): soften eyelash prominence -- alpha scale, not color (texture color already near-black/realistic, confirmed by direct pixel sampling) ====================
+  eyelash alpha texture: eyelashes02.png -> eyelashes02_softened.png (Phase 20)
+  skin material: Specular IOR Level 0.500->0.28 (roughness left at 0.7, skin needs a softer but present highlight)
+
+Saving intermediate .blend after asset application for inspection.
+Info: Saved as "avatar_stage2_v11.blend"
+Saved avatar_stage2_v11.blend
+
+==================== STAGE: create export copy with Oculus visemes + ARKit face units baked ====================
+[DEBUG] matops.createexportcopy ................: settings {'bake_shapekeys': True, 'remove_basemesh': False, 'delete_helpers': True, 'suffix': '_export_copy', 'create_collection': True, 'visemes_meta': True, 'visemes_microsoft': False, 'faceunits_arkit': True, 'interpolate': True, 'mask_modifiers': 'BAKE', 'subdiv_modifiers': 'BAKE'}
+[DEBUG] matops.createexportcopy ................: collection <bpy_struct, Collection("export copy") at 0x000002DC352E5B48>
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Applied modifier was not first, result may not be as expected
+Info: Export copy created
+  export copy created
+Error: Shapekey KEKey.002 has an invalid 'from' pointer (0000000000000000), it will be deleted
+Info: Saved as "avatar_stage3_exportcopy_v11.blend"
+  non-fatal save warning (continuing): Error: Shapekey KEKey.002 has an invalid 'from' pointer (0000000000000000), it will be deleted
+
+
+==================== STAGE: find the export-copy armature, verify root name 'Armature' ====================
+  all armature objects: ['Human.rig', 'Human.rig_export_copy']
+
+==================== STAGE: FIX: normalize bone roll axes on the export-copy armature (talkinghead.fix_bone_axes_t) ====================
+Applied: 65, skipped: 0
+Info: Bone axes fixed.
+  ran fix_bone_axes_t on Human.rig_export_copy
+
+==================== STAGE: FIX (Phase 7): correct the Head bone's forward-tilt, baked in by fix_bone_axes_t's own T-pose reference ====================
+  applied -2.289 deg corrective pose on Head as new rest pose
+
+==================== STAGE: FIX: remove the 'Jaw' vertex group from every export-copy mesh (the real root cause) ====================
+  removed 'Jaw' vertex group from: ['Human.teeth_base_export_copy', 'Human.toigo_female_suit_2_export_copy', 'Human.tongue01_export_copy', 'Human_export_copy']
+
+==================== STAGE: FIX: strip stray unbaked Subdivision modifiers from accessory/clothing export copies ====================
+    removing stray Subdivision modifier from Human.eyebrow003_export_copy (was levels=0, render_levels=1)
+    removing stray Subdivision modifier from Human.eyelashes02_export_copy (was levels=0, render_levels=1)
+    removing stray Subdivision modifier from Human.high-poly_export_copy (was levels=0, render_levels=1)
+    removing stray Subdivision modifier from Human.teeth_base_export_copy (was levels=0, render_levels=1)
+    removing stray Subdivision modifier from Human.toigo_female_suit_2_export_copy (was levels=0, render_levels=1)
+    removing stray Subdivision modifier from Human.tongue01_export_copy (was levels=0, render_levels=1)
+  removed 6 stray Subdivision modifiers from accessory/clothing meshes
+
+==================== STAGE: FIX (Phase 4): insert a real alpha-clip shader node on the three affected materials ====================
+  alpha-clip node inserted on: [('Human.toigo_female_suit_2', 0.5), ('Human.teeth_base', 0.4), ('Human.tongue01', 0.4), ('Human.body', 0.5)]
+
+==================== STAGE: Phase 7's eye-desaturation approach REMOVED (Phase 18): confirmed inert on export, replaced by the RECOLOR_TARGETS texture swap above ====================
+  (no-op: see RECOLOR_TARGETS texture swap for the real eye fix)
+
+==================== STAGE: Phase 25: procedural strand-ribbon hair -- generated on the final, bone-fixed export copy, rigidly skinned to Head ====================
+  scalp candidate points: 1893 (z_thresh=1.4454, eye_y=-0.11665839329361916)
+  occupied scalp grid cells: 137 / 196
+  guide roots drawn via grid-even sampling: 150
+  built 150 guide curves (Phase 26: normal-initialized crown growth)
+  hair mesh: verts=3600 polys=1650
+  'ProcHairMesh_export_copy' rigidly skinned to Head bone on Human.rig_export_copy
+
+==================== STAGE: export to GLB ====================
+  selected for export (by _export_copy suffix): ['ProcHairMesh_export_copy', 'Human.rig_export_copy', 'Human_export_copy', 'Human.eyebrow003_export_copy', 'Human.eyelashes02_export_copy', 'Human.high-poly_export_copy', 'Human.teeth_base_export_copy', 'Human.toigo_female_suit_2_export_copy', 'Human.tongue01_export_copy']
+INFO Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 4.5\4.5\scripts\addons_core\io_scene_gltf2\extern_draco.dll
+21:54:32 | INFO: Starting glTF 2.0 export
+21:54:32 | INFO: Extracting primitive: eyebrow003.001
+21:54:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:32 | INFO: Primitives created: 1
+21:54:32 | INFO: Extracting primitive: eyelashes02.001
+21:54:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:32 | INFO: Primitives created: 1
+21:54:32 | INFO: Extracting primitive: high-poly.001
+21:54:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:32 | INFO: Primitives created: 1
+21:54:32 | INFO: Extracting primitive: teeth_base.001
+21:54:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:32 | INFO: Primitives created: 1
+21:54:32 | INFO: Extracting primitive: fem_suit2.001
+21:54:33 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:33 | INFO: Primitives created: 1
+21:54:33 | WARNING: There are more than 4 joint vertex influences.The 4 with highest weight will be used (and normalized).
+21:54:33 | INFO: Extracting primitive: tongue01.001
+21:54:33 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:33 | INFO: Primitives created: 1
+21:54:33 | INFO: Extracting primitive: base.003
+21:54:34 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:35 | INFO: Primitives created: 1
+21:54:35 | INFO: Extracting primitive: ProcHairMesh.001
+21:54:35 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+21:54:35 | INFO: Primitives created: 1
+21:54:35 | INFO: Finished glTF 2.0 export in 2.8296618461608887 s
+
+  exported to C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_v14_attempt4.glb
+  GLB size bytes: 20227020
+
+ALL STAGES COMPLETE
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+OBJ import of 'base.obj' took 19.33 ms
+OBJ import of 'base.obj' took 20.12 ms
+OBJ import of 'high-poly.obj' took 3.11 ms
+OBJ import of 'eyebrow003.obj' took 0.36 ms
+OBJ import of 'eyelashes02.obj' took 0.57 ms
+OBJ import of 'teeth_base.obj' took 4.60 ms
+OBJ import of 'tongue01.obj' took 0.66 ms
+OBJ import of 'fem_suit2.obj' took 10.48 ms
+
+Blender quit

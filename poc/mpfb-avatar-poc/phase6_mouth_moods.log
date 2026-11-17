@@ -1,0 +1,29 @@
+captured mouth recentered (closed)
+never caught a high viseme value for the open-mouth shot
+ALL MOOD NAMES: ["neutral","happy","angry","sad","fear","disgust","love","sleep"]
+FULL MOOD RESULTS: {
+ "neutral": {
+  "eyesLookDown": 0.41866621524250225
+ },
+ "happy": {
+  "mouthSmile": 0.2937885104559158,
+  "eyesLookDown": 0.2609086322434191
+ },
+ "angry": {
+  "browDownLeft": -0.010112825297473576,
+  "mouthFrownLeft": 0.3406080166771856,
+  "jawForward": 0.14597486429022238
+ },
+ "sad": {
+  "mouthFrownLeft": 0.7748781285394785,
+  "browInnerUp": 0.7027161656115263
+ },
+ "fear": {
+  "browInnerUp": 0.7620077242577896,
+  "eyeWideLeft": 0.2716264351819125,
+  "mouthFunnel": 0.13581321759095624
+ },
+ "disgust": {},
+ "love": {},
+ "sleep": {}
+}

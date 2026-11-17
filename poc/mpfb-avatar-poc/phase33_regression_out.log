@@ -1,0 +1,6 @@
+ready: true | status: Ready. Oculus visemes: 15, other morphs: 57 Engine: Phase 8 idle-gaze-fixed copy (+Phase17 smile) Avatar: ./avatar_v18_candidate_v2.glb Phase 19: eye/skin experiments loaded, OFF by default
+morph targets: {"visemes":15,"total":72}
+gaze eyeLookOutLeft: 0.000
+lip-sync peak over 2s playback: 0.545
+blink max over 22s: 1.000
+mood convergence (6s settle): {"happy":"0.237","sad":"0.485","fear":"0.364"}

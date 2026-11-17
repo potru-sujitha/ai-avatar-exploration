@@ -1,0 +1,47 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+
+=== Material: Human.high-poly ===  found=True
+nodes:
+  Material Output (OUTPUT_MATERIAL) label=
+  Principled BSDF (BSDF_PRINCIPLED) label=
+     input 'Base Color' <- diffuseIntensity.Color
+     input 'Metallic' = 0.0
+     input 'Roughness' = 0.699999988079071
+     input 'IOR' = 1.4500000476837158
+     input 'Alpha' <- diffuseTexture.Alpha
+     input 'Normal' = <bpy_float[3], NodeSocketVector.default_value>
+     input 'Weight' = 0.0
+     input 'Diffuse Roughness' = 0.0
+     input 'Subsurface Weight' = 0.0
+     input 'Subsurface Radius' = <bpy_float[3], NodeSocketVector.default_value>
+     input 'Subsurface Scale' = 0.05000000074505806
+     input 'Subsurface IOR' = 1.399999976158142
+     input 'Subsurface Anisotropy' = 0.0
+     input 'Specular IOR Level' = 0.5
+     input 'Specular Tint' = <bpy_float[4], NodeSocketColor.default_value>
+     input 'Anisotropic' = 0.0
+     input 'Anisotropic Rotation' = 0.0
+     input 'Tangent' = <bpy_float[3], NodeSocketVector.default_value>
+     input 'Transmission Weight' = 0.0
+     input 'Coat Weight' = 0.0
+     input 'Coat Roughness' = 0.0
+     input 'Coat IOR' = 1.5
+     input 'Coat Tint' = <bpy_float[4], NodeSocketColor.default_value>
+     input 'Coat Normal' = <bpy_float[3], NodeSocketVector.default_value>
+     input 'Sheen Weight' = 0.0
+     input 'Sheen Roughness' = 0.5
+     input 'Sheen Tint' = <bpy_float[4], NodeSocketColor.default_value>
+     input 'Emission Color' = <bpy_float[4], NodeSocketColor.default_value>
+     input 'Emission Strength' = 0.0
+     input 'Thin Film Thickness' = 0.0
+     input 'Thin Film IOR' = 1.3300000429153442
+  diffuseIntensity (MIX_RGB) label=diffuse intensity
+  diffuseTexture (TEX_IMAGE) label=Diffuse Texture
+     image: brown_eye.png, colorspace=sRGB, size=(1024, 1024), filepath=//..\..\..\..\Admin\AppData\Roaming\Blender Foundation\Blender\4.5\extensions\.user\user_default\mpfb\data\eyes\materials\brown_eye.png
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v4.blend"
+
+Blender quit

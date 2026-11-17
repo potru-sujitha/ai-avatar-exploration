@@ -1,0 +1,33 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+teeth vertex groups: ['Head', 'Jaw']
+
+bone usage across all teeth vertices: {'Head': 3868, 'Jaw': 1884}
+
+sample vertex weights (first 15):
+  v0: [('Head', 1.0), ('Jaw', 1.0)]
+  v1: [('Head', 1.0), ('Jaw', 1.0)]
+  v2: [('Head', 1.0), ('Jaw', 1.0)]
+  v3: [('Head', 1.0), ('Jaw', 1.0)]
+  v4: [('Head', 1.0), ('Jaw', 1.0)]
+  v5: [('Head', 1.0), ('Jaw', 1.0)]
+  v6: [('Head', 1.0), ('Jaw', 1.0)]
+  v7: [('Head', 1.0), ('Jaw', 1.0)]
+  v8: [('Head', 1.0), ('Jaw', 1.0)]
+  v9: [('Head', 1.0), ('Jaw', 1.0)]
+  v10: [('Head', 1.0), ('Jaw', 1.0)]
+  v11: [('Head', 1.0), ('Jaw', 1.0)]
+  v12: [('Head', 1.0), ('Jaw', 1.0)]
+  v13: [('Head', 1.0), ('Jaw', 1.0)]
+  v14: [('Head', 1.0), ('Jaw', 1.0)]
+
+armature bone names (first 40): ['Hips', 'LeftUpLeg', 'LeftButtock', 'LeftLeg', 'LeftFoot', 'LeftToeBase', 'LeftToe_End', 'RightUpLeg', 'RightButtock', 'RightLeg', 'RightFoot', 'RightToeBase', 'RightToe_End', 'Spine', 'Spine1', 'LeftBreast', 'RightBreast', 'Spine2', 'LeftShoulder', 'LeftArm', 'LeftForeArm', 'LeftHand', 'LeftHandIndex1', 'LeftHandIndex2', 'LeftHandIndex3', 'LeftHandIndex4', 'LeftHandMiddle1', 'LeftHandMiddle2', 'LeftHandMiddle3', 'LeftHandMiddle4', 'LeftHandPinky1', 'LeftHandPinky2', 'LeftHandPinky3', 'LeftHandPinky4', 'LeftHandRing1', 'LeftHandRing2', 'LeftHandRing3', 'LeftHandRing4', 'LeftHandThumb1', 'LeftHandThumb2']
+total bones: 76
+'Head' in bones: True
+any 'jaw' in bones (case-insens): ['Jaw']
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+
+Blender quit

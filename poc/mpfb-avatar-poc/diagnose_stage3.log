@@ -1,0 +1,214 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+
+=== ALL OBJECTS ===
+- Human (type=MESH, parent=Human.rig)
+- Human.eyebrow003 (type=MESH, parent=Human.rig)
+- Human.eyebrow003_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.eyelashes02 (type=MESH, parent=Human.rig)
+- Human.eyelashes02_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.female_elegantsuit01 (type=MESH, parent=Human.rig)
+- Human.female_elegantsuit01_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.high-poly (type=MESH, parent=Human.rig)
+- Human.high-poly_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.rig (type=ARMATURE, parent=None)
+- Human.rig_export_copy (type=ARMATURE, parent=None)
+- Human.teeth_base (type=MESH, parent=Human.rig)
+- Human.teeth_base_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.toigo_blunt_bob (type=MESH, parent=Human.rig)
+- Human.toigo_blunt_bob_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human.tongue01 (type=MESH, parent=Human.rig)
+- Human.tongue01_export_copy (type=MESH, parent=Human.rig_export_copy)
+- Human_export_copy (type=MESH, parent=Human.rig_export_copy)
+
+=== MESH OBJECTS: modifiers + shape keys ===
+
+--- Human ---
+  vertex count: 19158
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Hide helpers (type=MASK) {'vertex_group': 'body', 'invert_vertex_group': False}
+    - Delete.female_elegantsuit01 (type=MASK) {'vertex_group': 'Delete.female_elegantsuit01', 'invert_vertex_group': True}
+  shape keys (name=value):
+    * NONZERO: $md-$ca-$fe-$yn = 0.9901999831199646
+    * NONZERO: $md-universal-$fe-$yn-$av$mu-$av$wg = 0.9901999831199646
+    * NONZERO: $md-$fe-$yn-$av$mu-$av$wg-$avcup-max$fi = 0.08856657892465591
+    * NONZERO: $md-$fe-$yn-$av$mu-$av$wg-maxcup-$av$fi = 0.088466577231884
+    (total shape keys: 5, nonzero: 4)
+  material slots:
+    [0] Human.body
+  vertex groups count: 216
+  UV layers: ['UVMap']
+
+--- Human.eyebrow003 ---
+  vertex count: 124
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.eyebrow003
+  vertex groups count: 3
+  UV layers: ['UVMap']
+
+--- Human.eyebrow003_export_copy ---
+  vertex count: 124
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 33, nonzero: 0)
+  material slots:
+    [0] Human.eyebrow003
+  vertex groups count: 3
+  UV layers: ['UVMap']
+
+--- Human.eyelashes02 ---
+  vertex count: 250
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.eyelashes02
+  vertex groups count: 7
+  UV layers: ['UVMap']
+
+--- Human.eyelashes02_export_copy ---
+  vertex count: 250
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 28, nonzero: 0)
+  material slots:
+    [0] Human.eyelashes02
+  vertex groups count: 7
+  UV layers: ['UVMap']
+
+--- Human.female_elegantsuit01 ---
+  vertex count: 2205
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.female_elegantsuit01
+  vertex groups count: 23
+  UV layers: ['UVMap']
+
+--- Human.female_elegantsuit01_export_copy ---
+  vertex count: 2205
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 1, nonzero: 0)
+  material slots:
+    [0] Human.female_elegantsuit01
+  vertex groups count: 23
+  UV layers: ['UVMap']
+
+--- Human.high-poly ---
+  vertex count: 1064
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.high-poly
+  vertex groups count: 5
+  UV layers: ['UVMap']
+
+--- Human.high-poly_export_copy ---
+  vertex count: 1064
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 9, nonzero: 0)
+  material slots:
+    [0] Human.high-poly
+  vertex groups count: 5
+  UV layers: ['UVMap']
+
+--- Human.teeth_base ---
+  vertex count: 3868
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.teeth_base
+  vertex groups count: 2
+  UV layers: ['UVMap']
+
+--- Human.teeth_base_export_copy ---
+  vertex count: 3868
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 13, nonzero: 0)
+  material slots:
+    [0] Human.teeth_base
+  vertex groups count: 2
+  UV layers: ['UVMap']
+
+--- Human.toigo_blunt_bob ---
+  vertex count: 1510
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.toigo_blunt_bob
+  vertex groups count: 13
+  UV layers: ['UVMap']
+
+--- Human.toigo_blunt_bob_export_copy ---
+  vertex count: 1510
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 52, nonzero: 0)
+  material slots:
+    [0] Human.toigo_blunt_bob
+  vertex groups count: 13
+  UV layers: ['UVMap']
+
+--- Human.tongue01 ---
+  vertex count: 226
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  material slots:
+    [0] Human.tongue01
+  vertex groups count: 2
+  UV layers: ['UVMap']
+
+--- Human.tongue01_export_copy ---
+  vertex count: 226
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+    - Subdivision (type=SUBSURF) {'levels': 0, 'render_levels': 1}
+  shape keys (name=value):
+    (total shape keys: 14, nonzero: 0)
+  material slots:
+    [0] Human.tongue01
+  vertex groups count: 2
+  UV layers: ['UVMap']
+
+--- Human_export_copy ---
+  vertex count: 10951
+  modifiers:
+    - Armature (type=ARMATURE) {'object': 'Human.rig_export_copy', 'vertex_group': '', 'invert_vertex_group': False}
+  shape keys (name=value):
+    (total shape keys: 68, nonzero: 0)
+  material slots:
+    [0] Human.body
+  vertex groups count: 216
+  UV layers: ['UVMap']
+
+=== DONE ===
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+
+Blender quit

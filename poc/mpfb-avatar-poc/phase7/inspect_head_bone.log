@@ -1,0 +1,46 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+armature object: <bpy_struct, Object("Human.rig_export_copy") at 0x00000139CD390820>
+armature world matrix:
+ <Matrix 4x4 (1.0000, 0.0000, 0.0000, 0.0000)
+            (0.0000, 1.0000, 0.0000, 0.0000)
+            (0.0000, 0.0000, 1.0000, 0.0000)
+            (0.0000, 0.0000, 0.0000, 1.0000)>
+armature rotation_euler: <Euler (x=0.0000, y=0.0000, z=0.0000), order='XYZ'>
+armature rotation_quaternion: <Quaternion (w=1.0000, x=0.0000, y=0.0000, z=0.0000)>
+armature rotation_mode: XYZ
+
+Head edit bone:
+  head/tail: <Vector (0.0004, -0.0231, 1.4182)> <Vector (0.0004, -0.0374, 1.6061)>
+  roll: -0.0002273275313200429
+  matrix:
+ <Matrix 4x4 ( 1.0000, -0.0002, -0.0000,  0.0004)
+            (-0.0000, -0.0757, -0.9971, -0.0231)
+            ( 0.0002,  0.9971, -0.0757,  1.4182)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+  parent: Neck
+
+Neck edit bone:
+  head/tail: <Vector (0.0000, 0.0011, 1.3588)> <Vector (0.0000, -0.0011, 1.4209)>
+  roll: 1.341104507446289e-07
+
+Head pose bone:
+  rotation_mode: XYZ
+  rotation_quaternion: <Quaternion (w=1.0000, x=0.0000, y=0.0000, z=0.0000)>
+  rotation_euler: <Euler (x=0.0000, y=-0.0000, z=0.0000), order='XYZ'>
+  matrix_basis:
+ <Matrix 4x4 (1.0000, 0.0000, 0.0000, 0.0000)
+            (0.0000, 1.0000, 0.0000, 0.0000)
+            (0.0000, 0.0000, 1.0000, 0.0000)
+            (0.0000, 0.0000, 0.0000, 1.0000)>
+  matrix (pose space):
+ <Matrix 4x4 ( 1.0000, -0.0002, -0.0000,  0.0004)
+            (-0.0000, -0.0757, -0.9971, -0.0231)
+            ( 0.0002,  0.9971, -0.0757,  1.4182)
+            ( 0.0000,  0.0000,  0.0000,  1.0000)>
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v4.blend"
+
+Blender quit

@@ -1,0 +1,16 @@
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v4.blend"
+Fra:1 Mem:358.66M (Peak 408.00M) | Time:01:13.19 | Rendering 1 / 64 samples
+Fra:1 Mem:358.66M (Peak 408.00M) | Time:01:14.26 | Rendering 25 / 64 samples
+Fra:1 Mem:358.66M (Peak 408.00M) | Time:01:15.40 | Rendering 50 / 64 samples
+Fra:1 Mem:358.66M (Peak 408.00M) | Time:01:16.00 | Rendering 64 / 64 samples
+Saved: 'C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\phase7_out\head_pose_20deg.png'
+Time: 01:16.85 (Saving: 00:00.57)
+
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+rendered C:/Users/sujitha/talking-avatar/poc/mpfb-avatar-poc/phase7_out/head_pose_20deg.png
+
+Blender quit

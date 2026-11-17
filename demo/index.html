@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talking Avatar Demo</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: #111;
+      color: #eee;
+    }
+    #avatar {
+      width: 360px;
+      height: 360px;
+      background: #222;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    button, select, input {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: #eee;
+    }
+    button:disabled { opacity: 0.5; }
+    #status { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <h1>Talking Avatar Demo</h1>
+  <div id="avatar"></div>
+  <div class="controls">
+    <button id="mic">🎙️ Start microphone</button>
+    <button id="stopmic" disabled>Stop microphone</button>
+    <label>Play audio file: <input type="file" id="file" accept="audio/*" /></label>
+    <select id="avatarSelect">
+      <option value="female">Female</option>
+      <option value="femaleLooseHair">Female (loose hair, experimental)</option>
+      <option value="femalePhotoSkin">Female (photo skin-tone re-toned, prototype)</option>
+      <option value="femalePhotoSkinV2">Female (photo skin-tone re-toned, v2)</option>
+      <option value="male">Male</option>
+    </select>
+    <button id="smileBtn">🙂 Smile</button>
+  </div>
+  <p id="status">loading avatar…</p>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

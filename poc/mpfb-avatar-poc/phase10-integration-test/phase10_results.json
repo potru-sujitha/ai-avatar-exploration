@@ -1,0 +1,416 @@
+{
+  "originalResult": {
+    "label": "original",
+    "engineFile": "test_original.html",
+    "loaded": true,
+    "loadTimeMs": 5118.300000000745,
+    "visemeCount": 15,
+    "arkitCount": 57,
+    "pageErrors": [],
+    "lipsync_default": {
+      "before": 0,
+      "maxVal": 0.4597997460520598,
+      "sampleCount": 13,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0
+    },
+    "lipsync_short": {
+      "before": 0,
+      "maxVal": 0.024771395871477742,
+      "sampleCount": 6,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0.024771395871477742
+    },
+    "lipsync_continuous": {
+      "before": 0,
+      "maxVal": 0.7546833975298967,
+      "sampleCount": 46,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0.6451533437177699
+    },
+    "lipsync_paused": {
+      "before": 0,
+      "maxVal": 0.8901521401961322,
+      "sampleCount": 33,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0.3908926954319825
+    },
+    "lipsync_question": "NOT TESTED — no suitable real-audio fixture with question intonation available",
+    "lipsync_speed": "NOT TESTED — no suitable real-audio fixture for a genuine speed variation (resampling changes pitch; manual morph assignment forbidden by task)",
+    "blink": {
+      "maxBlink": 1,
+      "framesAboveHalf": 4,
+      "totalFrames": 110,
+      "stuckClosed": false
+    },
+    "idleGaze": {
+      "runs": [
+        {
+          "meanDown": 0.2555824951881109,
+          "meanUp": 0,
+          "everUp": false,
+          "trials": [
+            {
+              "down": 0.13238974123139374,
+              "up": 0
+            },
+            {
+              "down": 0.30174099424499123,
+              "up": 0
+            },
+            {
+              "down": 0.30174099424499123,
+              "up": 0
+            },
+            {
+              "down": 0.30174099424499123,
+              "up": 0
+            },
+            {
+              "down": 0.2856354246969953,
+              "up": 0
+            },
+            {
+              "down": 0.2560413133410729,
+              "up": 0
+            },
+            {
+              "down": 0.2309928869349757,
+              "up": 0
+            },
+            {
+              "down": 0.2343776125654754,
+              "up": 0
+            }
+          ]
+        },
+        {
+          "meanDown": 0.4613703929400322,
+          "meanUp": 0,
+          "everUp": false,
+          "trials": [
+            {
+              "down": 0.41220384982076785,
+              "up": 0
+            },
+            {
+              "down": 0.5387283274315282,
+              "up": 0
+            },
+            {
+              "down": 0.5387283274315282,
+              "up": 0
+            },
+            {
+              "down": 0.5387283274315282,
+              "up": 0
+            },
+            {
+              "down": 0.5346622385066839,
+              "up": 0
+            },
+            {
+              "down": 0.5119136379402115,
+              "up": 0
+            },
+            {
+              "down": 0.4733863635390347,
+              "up": 0
+            },
+            {
+              "down": 0.1426120714189755,
+              "up": 0
+            }
+          ]
+        },
+        {
+          "meanDown": 0.28074908207361515,
+          "meanUp": 0,
+          "everUp": false,
+          "trials": [
+            {
+              "down": 0.3176846481737018,
+              "up": 0
+            },
+            {
+              "down": 0.26963285318174357,
+              "up": 0
+            },
+            {
+              "down": 0.26963285318174357,
+              "up": 0
+            },
+            {
+              "down": 0.26790392989132217,
+              "up": 0
+            },
+            {
+              "down": 0.24396493280466522,
+              "up": 0
+            },
+            {
+              "down": 0.22471011573335298,
+              "up": 0
+            },
+            {
+              "down": 0.2305155565076441,
+              "up": 0
+            },
+            {
+              "down": 0.4219477671147479,
+              "up": 0
+            }
+          ]
+        }
+      ]
+    },
+    "intentionalGaze": {
+      "beforeLook": {
+        "outLeft": 0.2730990892095764,
+        "inRight": 0.2730990892095764
+      },
+      "duringLook": {
+        "outLeft": 0.41702548680850426,
+        "inRight": 0.41702548680850426
+      },
+      "afterLook": {
+        "outLeft": 0.41702548680850426,
+        "inRight": 0.41702548680850426
+      },
+      "reachedTarget": true,
+      "paired": true
+    },
+    "moods": {
+      "happy": {
+        "values": {
+          "mouthSmile": 0.20816686763938624
+        },
+        "lipsyncStillWorksDuringMood": true
+      },
+      "sad": {
+        "values": {
+          "mouthFrownLeft": 0.03477700871757659
+        },
+        "lipsyncStillWorksDuringMood": true
+      },
+      "fear": {
+        "values": {
+          "browInnerUp": 0.7529689065803656
+        },
+        "lipsyncStillWorksDuringMood": true
+      }
+    },
+    "pageErrorsFinal": []
+  },
+  "fixedResult": {
+    "label": "idlegaze_fixed",
+    "engineFile": "test_idlegaze_fixed.html",
+    "loaded": true,
+    "loadTimeMs": 6507.099999997765,
+    "visemeCount": 15,
+    "arkitCount": 57,
+    "pageErrors": [],
+    "lipsync_default": {
+      "before": 0,
+      "maxVal": 0.5940156950764345,
+      "sampleCount": 16,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0
+    },
+    "lipsync_short": {
+      "before": 0,
+      "maxVal": 0.5806304425620947,
+      "sampleCount": 6,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0.5806304425620947
+    },
+    "lipsync_continuous": {
+      "before": 0,
+      "maxVal": 0.8060782419399617,
+      "sampleCount": 36,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0.00042490186163481877
+    },
+    "lipsync_paused": {
+      "before": 0,
+      "maxVal": 0.6243037084398153,
+      "sampleCount": 29,
+      "anyNaN": false,
+      "stuckAtEnd": false,
+      "lastVal": 0
+    },
+    "lipsync_question": "NOT TESTED — no suitable real-audio fixture with question intonation available",
+    "lipsync_speed": "NOT TESTED — no suitable real-audio fixture for a genuine speed variation (resampling changes pitch; manual morph assignment forbidden by task)",
+    "blink": {
+      "maxBlink": 0.9909058629851588,
+      "framesAboveHalf": 5,
+      "totalFrames": 110,
+      "stuckClosed": false
+    },
+    "idleGaze": {
+      "runs": [
+        {
+          "meanDown": 0,
+          "meanUp": 0.03652725764440188,
+          "everUp": true,
+          "trials": [
+            {
+              "down": 0,
+              "up": 0.18268839363242328
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            },
+            {
+              "down": 0,
+              "up": 0.01564709536039882
+            }
+          ]
+        },
+        {
+          "meanDown": 0.1401682785965219,
+          "meanUp": 0,
+          "everUp": false,
+          "trials": [
+            {
+              "down": 0.015041056270351872,
+              "up": 0
+            },
+            {
+              "down": 0.043190031611140184,
+              "up": 0
+            },
+            {
+              "down": 0.07078782614155911,
+              "up": 0
+            },
+            {
+              "down": 0.14953045368303658,
+              "up": 0
+            },
+            {
+              "down": 0.17832519293693513,
+              "up": 0
+            },
+            {
+              "down": 0.20269312594875685,
+              "up": 0
+            },
+            {
+              "down": 0.22015273692573736,
+              "up": 0
+            },
+            {
+              "down": 0.241625805254658,
+              "up": 0
+            }
+          ]
+        },
+        {
+          "meanDown": 0.0851145250399949,
+          "meanUp": 0.0016070350142529943,
+          "everUp": true,
+          "trials": [
+            {
+              "down": 0.05073406127762581,
+              "up": 0
+            },
+            {
+              "down": 0.11258016239070873,
+              "up": 0
+            },
+            {
+              "down": 0.11258016239070873,
+              "up": 0
+            },
+            {
+              "down": 0.11258016239070873,
+              "up": 0
+            },
+            {
+              "down": 0.10768616077959889,
+              "up": 0
+            },
+            {
+              "down": 0.09852715437787056,
+              "up": 0
+            },
+            {
+              "down": 0.08622833671273786,
+              "up": 0
+            },
+            {
+              "down": 0,
+              "up": 0.012856280114023955
+            }
+          ]
+        }
+      ]
+    },
+    "intentionalGaze": {
+      "beforeLook": {
+        "outLeft": 0,
+        "inRight": 0
+      },
+      "duringLook": {
+        "outLeft": 0.47470400088811493,
+        "inRight": 0.47470400088811493
+      },
+      "afterLook": {
+        "outLeft": 0.47470400088811493,
+        "inRight": 0.47470400088811493
+      },
+      "reachedTarget": true,
+      "paired": true
+    },
+    "moods": {
+      "happy": {
+        "values": {
+          "mouthSmile": 0.2110111808886613
+        },
+        "lipsyncStillWorksDuringMood": true
+      },
+      "sad": {
+        "values": {
+          "mouthFrownLeft": 0.2870556892560363
+        },
+        "lipsyncStillWorksDuringMood": true
+      },
+      "fear": {
+        "values": {
+          "browInnerUp": 0.7407067990915536
+        },
+        "lipsyncStillWorksDuringMood": true
+      }
+    },
+    "pageErrorsFinal": []
+  }
+}

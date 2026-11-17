@@ -1,0 +1,16 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+Human.eyebrow003_export_copy: verts=124, max_influences=2, verts_over_4=0 (0.0%)
+Human.eyelashes02_export_copy: verts=250, max_influences=4, verts_over_4=0 (0.0%)
+Human.female_elegantsuit01_export_copy: verts=2205, max_influences=7, verts_over_4=608 (27.6%)
+Human.high-poly_export_copy: verts=1064, max_influences=3, verts_over_4=0 (0.0%)
+Human.teeth_base_export_copy: verts=3868, max_influences=2, verts_over_4=0 (0.0%)
+Human.toigo_blunt_bob_export_copy: verts=1510, max_influences=7, verts_over_4=162 (10.7%)
+Human.tongue01_export_copy: verts=226, max_influences=2, verts_over_4=0 (0.0%)
+Human_export_copy: verts=10951, max_influences=9, verts_over_4=1978 (18.1%)
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy.blend"
+
+Blender quit

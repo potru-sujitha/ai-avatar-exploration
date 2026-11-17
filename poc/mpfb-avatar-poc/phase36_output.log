@@ -1,0 +1,29 @@
+ready: true | Ready. Oculus visemes: 15, other morphs: 57 Engine: Phase 8 idle-gaze-fixed copy (+Phase17 smile) Avatar: ./avatar_v17.glb Phase 19: eye/skin experiments loaded, OFF by default
+captured mood: neutral
+captured mood: happy
+captured mood: sad
+captured mood: fear
+captured mood: angry
+captured mood: disgust
+captured mood: love
+--- starting idle window ---
+IDLE window: 23 samples over 35s
+  bodyRotateY (yaw)  min/max/mean (rad): -0.0332 0.0415 0.0031
+  bodyRotateY (yaw)  min/max (deg): -1.90 2.38
+  bodyRotateX (pitch) min/max/mean (rad): -0.0081 0.0406 0.0219
+  bodyRotateZ (roll)  min/max/mean (rad): -0.0249 0.0168 -0.0075
+  idle window blink max: 1.000
+  idle screenshots: phase36_idle_t0s.png, phase36_idle_t10s.png, phase36_idle_t20s.png, phase36_idle_t30s.png
+--- gaze independence check ---
+gaze check: before bodyRotateY=-0.0089 gaze=0.000
+gaze check: after  bodyRotateY=-0.6526 gaze=0.000
+--- starting speaking window ---
+SPEAKING window: 73 samples over 35s, 7 playback cycles triggered
+  bodyRotateY (yaw)  min/max/mean (rad): -0.0659 0.1524 0.0061
+  bodyRotateY (yaw)  min/max (deg): -3.78 8.73
+  bodyRotateX (pitch) min/max/mean (rad): -0.1217 0.1502 -0.0029
+  bodyRotateZ (roll)  min/max/mean (rad): -0.0155 0.0240 0.0053
+  viseme peak during window: 0.592
+  speaking window blink max: 1.000
+  speaking screenshots: phase36_speaking_t10s.png
+wrote phase36_raw_data.json

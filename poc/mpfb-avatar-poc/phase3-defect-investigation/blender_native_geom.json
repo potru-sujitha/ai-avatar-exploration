@@ -1,0 +1,281 @@
+{
+  "Human.female_elegantsuit01_export_copy": {
+    "vertex_count": 2205,
+    "bbox_local": {
+      "min": [
+        -0.4469359219074249,
+        -0.19019265472888947,
+        0.519771158695221
+      ],
+      "max": [
+        0.4452122747898102,
+        0.09676145762205124,
+        1.3813292980194092
+      ]
+    },
+    "sample_first5verts_xyz": [
+      0.08566787093877792,
+      -0.1264083832502365,
+      0.9137983918190002,
+      0.0855545774102211,
+      0.03464918211102486,
+      0.9439265131950378,
+      0.1304968148469925,
+      -0.094239242374897,
+      0.9213636517524719,
+      0.1529434621334076,
+      -0.038736678659915924,
+      0.9296654462814331,
+      0.08913712203502655,
+      -0.124232217669487,
+      0.8998934030532837
+    ],
+    "shape_keys": [
+      "Basis"
+    ],
+    "modifiers": [
+      [
+        "Armature",
+        "ARMATURE",
+        null
+      ],
+      [
+        "Subdivision",
+        "SUBSURF",
+        0
+      ]
+    ],
+    "polygon_count": 2096
+  },
+  "Human.teeth_base_export_copy": {
+    "vertex_count": 3868,
+    "bbox_local": {
+      "min": [
+        -0.028646226972341537,
+        -0.13298700749874115,
+        1.4111392498016357
+      ],
+      "max": [
+        0.02864592894911766,
+        -0.0631244108080864,
+        1.457076072692871
+      ]
+    },
+    "sample_first5verts_xyz": [
+      0.0004356812860351056,
+      -0.1269378960132599,
+      1.430330514907837,
+      0.0006466087070293725,
+      -0.12571494281291962,
+      1.4253407716751099,
+      0.002390804700553417,
+      -0.1272560954093933,
+      1.4301788806915283,
+      0.0024802356492727995,
+      -0.12489335983991623,
+      1.4254353046417236,
+      0.004392408765852451,
+      -0.12712660431861877,
+      1.4302525520324707
+    ],
+    "shape_keys": [
+      "Basis",
+      "viseme_aa",
+      "viseme_DD",
+      "viseme_E",
+      "viseme_kk",
+      "viseme_nn",
+      "viseme_O",
+      "viseme_PP",
+      "viseme_TH",
+      "jawForward",
+      "jawLeft",
+      "jawOpen",
+      "jawRight"
+    ],
+    "modifiers": [
+      [
+        "Armature",
+        "ARMATURE",
+        null
+      ],
+      [
+        "Subdivision",
+        "SUBSURF",
+        0
+      ]
+    ],
+    "polygon_count": 3560
+  },
+  "Human.tongue01_export_copy": {
+    "vertex_count": 226,
+    "bbox_local": {
+      "min": [
+        -0.022142747417092323,
+        -0.12384286522865295,
+        1.4238903522491455
+      ],
+      "max": [
+        0.022142747417092323,
+        -0.05359208956360817,
+        1.4504021406173706
+      ]
+    },
+    "sample_first5verts_xyz": [
+      0.0,
+      -0.12301874160766602,
+      1.433439016342163,
+      0.0,
+      -0.12366385012865067,
+      1.435214877128601,
+      0.0,
+      -0.12136167287826538,
+      1.4326320886611938,
+      0.0,
+      -0.12359698116779327,
+      1.4371408224105835,
+      0.0,
+      -0.11970972269773483,
+      1.4330672025680542
+    ],
+    "shape_keys": [
+      "Basis",
+      "viseme_aa",
+      "viseme_DD",
+      "viseme_E",
+      "viseme_kk",
+      "viseme_nn",
+      "viseme_O",
+      "viseme_PP",
+      "viseme_TH",
+      "jawForward",
+      "jawLeft",
+      "jawOpen",
+      "jawRight",
+      "tongueOut"
+    ],
+    "modifiers": [
+      [
+        "Armature",
+        "ARMATURE",
+        null
+      ],
+      [
+        "Subdivision",
+        "SUBSURF",
+        0
+      ]
+    ],
+    "polygon_count": 224
+  },
+  "Human_export_copy": {
+    "vertex_count": 10951,
+    "bbox_local": {
+      "min": [
+        -0.4901309013366699,
+        -0.29552680253982544,
+        -2.7939677238464355e-08
+      ],
+      "max": [
+        0.4901309013366699,
+        0.04593244567513466,
+        1.6059846878051758
+      ]
+    },
+    "sample_first5verts_xyz": [
+      -0.0323454923927784,
+      -0.12778834998607635,
+      1.50242018699646,
+      -0.02842646837234497,
+      -0.12819737195968628,
+      1.5024813413619995,
+      -0.032136470079422,
+      -0.12774738669395447,
+      1.5040802955627441,
+      -0.02837548777461052,
+      -0.12829738855361938,
+      1.5038913488388062,
+      -0.03229548782110214,
+      -0.12751738727092743,
+      1.5051703453063965
+    ],
+    "shape_keys": [
+      "Basis",
+      "viseme_aa",
+      "viseme_CH",
+      "viseme_DD",
+      "viseme_E",
+      "viseme_FF",
+      "viseme_I",
+      "viseme_kk",
+      "viseme_nn",
+      "viseme_O",
+      "viseme_PP",
+      "viseme_RR",
+      "viseme_sil",
+      "viseme_SS",
+      "viseme_TH",
+      "viseme_U",
+      "browDownLeft",
+      "browDownRight",
+      "browInnerUp",
+      "browOuterUpLeft",
+      "browOuterUpRight",
+      "cheekPuff",
+      "cheekSquintLeft",
+      "cheekSquintRight",
+      "eyeBlinkLeft",
+      "eyeBlinkRight",
+      "eyeLookDownLeft",
+      "eyeLookDownRight",
+      "eyeLookInLeft",
+      "eyeLookInRight",
+      "eyeLookOutLeft",
+      "eyeLookOutRight",
+      "eyeLookUpLeft",
+      "eyeLookUpRight",
+      "eyeSquintLeft",
+      "eyeSquintRight",
+      "eyeWideLeft",
+      "eyeWideRight",
+      "jawForward",
+      "jawLeft",
+      "jawOpen",
+      "jawRight",
+      "mouthClose",
+      "mouthDimpleLeft",
+      "mouthDimpleRight",
+      "mouthFrownLeft",
+      "mouthFrownRight",
+      "mouthFunnel",
+      "mouthLeft",
+      "mouthLowerDownLeft",
+      "mouthLowerDownRight",
+      "mouthPressLeft",
+      "mouthPressRight",
+      "mouthPucker",
+      "mouthRight",
+      "mouthRollLower",
+      "mouthRollUpper",
+      "mouthShrugLower",
+      "mouthShrugUpper",
+      "mouthSmileLeft",
+      "mouthSmileRight",
+      "mouthStretchLeft",
+      "mouthStretchRight",
+      "mouthUpperUpLeft",
+      "mouthUpperUpRight",
+      "noseSneerLeft",
+      "noseSneerRight",
+      "tongueOut"
+    ],
+    "modifiers": [
+      [
+        "Armature",
+        "ARMATURE",
+        null
+      ]
+    ],
+    "polygon_count": 10873
+  }
+}

@@ -1,0 +1,29 @@
+const puppeteer = require("puppeteer");
+(async () => {
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--autoplay-policy=no-user-gesture-required"],
+  });
+  const page = await browser.newPage();
+  page.on("pageerror", (e) => console.log("[pageerror]", e.message));
+  await page.setCacheEnabled(false);
+  await page.setViewport({ width: 800, height: 700 });
+  await page.goto("http://localhost:8924/phase20-demo.html?avatar=./phase40_test2_deleted.glb", { waitUntil: "domcontentloaded", timeout: 30000 });
+  let ready = false;
+  for (let i = 0; i < 60; i++) {
+    ready = await page.evaluate(() => window.__ready === true).catch(() => false);
+    if (ready) break;
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  const status = await page.evaluate(() => document.getElementById('status')?.textContent || 'NO STATUS');
+  console.log("status:", status.replace(/\n/g,' | '));
+  await page.evaluate(() => { document.getElementById('panel').style.display = 'none'; });
+  await page.evaluate(() => { window.__head.setView('head', { cameraDistance: 0.1, cameraY: 0.1, cameraX: 0 }); });
+  await new Promise((r) => setTimeout(r, 1500));
+  await page.screenshot({ path: "phase40_test2_chest.png" });
+  await page.evaluate(() => { window.__head.setView('head', { cameraDistance: -0.42, cameraY: 0.56, cameraX: 0 }); });
+  await new Promise((r) => setTimeout(r, 1300));
+  await page.screenshot({ path: "phase40_test2_hairline.png" });
+  console.log("captured both");
+  await browser.close();
+})().catch((e) => { console.error("FATAL", e); process.exit(1); });

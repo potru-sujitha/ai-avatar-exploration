@@ -1,0 +1,19 @@
+[INFO ] services.locationservice ...............: Not adding link to MakeHuman user data, since neither explicit path nor auto-discovery is set in preferences.
+[INFO ] mpfb.init ..............................: Build info 20261010
+[INFO ] mpfb.init ..............................: Online access preference is not enabled. Not checking if MakeHuman is online.
+[INFO ] mpfb.init ..............................: MPFB initialization has finished.
+mix node found: <bpy_struct, ShaderNodeMixRGB("diffuseIntensity") at 0x00000267F8DDBCA0>
+inserted desaturation node
+eyes export-copy object: <bpy_struct, Object("Human.high-poly_export_copy") at 0x00000267F587F920>
+INFO Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 4.5\4.5\scripts\addons_core\io_scene_gltf2\extern_draco.dll
+16:19:37 | INFO: Starting glTF 2.0 export
+16:19:37 | INFO: Extracting primitive: high-poly.001
+16:19:37 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+16:19:37 | INFO: Primitives created: 1
+16:19:37 | INFO: Finished glTF 2.0 export in 0.18307089805603027 s
+
+exported eyes_desaturated_test.glb
+Blender 4.5.10 LTS (hash 6dc0b208d1b5 built 2026-05-19 01:33:42)
+Read blend: "C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\avatar_stage3_exportcopy_v5.blend"
+
+Blender quit

@@ -1,0 +1,13 @@
+ready: true
+lip-sync samples (viseme_aa): 0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000
+lip-sync max: 0.000
+blink max over 20s: 0.014
+gaze down: 0.000
+gaze up: 0.000
+happy -> {"mouthSmile":0.2139832938124932,"mouthFrownLeft":0,"eyeWideLeft":0}
+sad -> {"mouthSmile":0.04320248192976964,"mouthFrownLeft":0.6384827856042757,"eyeWideLeft":0}
+fear -> {"mouthSmile":0,"mouthFrownLeft":0.8834542879117678,"eyeWideLeft":0.4788620892032068}
+FATAL Error: Attempted to use detached Frame '6C04E12CE743BA2BF48D6A4A83A5D61A'.
+    at CdpFrame.<anonymous> (file:///C:/Users/sujitha/talking-avatar/node_modules/puppeteer-core/lib/puppeteer/util/decorators.js:99:23)
+    at CdpPage.evaluate (file:///C:/Users/sujitha/talking-avatar/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:832:43)
+    at run (C:\Users\sujitha\talking-avatar\poc\mpfb-avatar-poc\phase18_regression.cjs:63:29)

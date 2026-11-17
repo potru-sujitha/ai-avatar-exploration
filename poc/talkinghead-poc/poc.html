@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TalkingHead POC — driven by the existing project's real viseme pipeline</title>
+<style>
+  body, html { width:100%; height:100%; margin:0; background:#202020; color:#eee; font-family:sans-serif; }
+  #avatar { display:block; width:900px; height:700px; }
+  #panel { position:fixed; top:10px; right:10px; width:320px; }
+  button { font-size:16px; padding:6px 14px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "talkinghead": "./TalkingHead/modules/talkinghead.mjs"
+}}
+</script>
+</head>
+<body>
+<div id="avatar"></div>
+<div id="panel">
+  <div id="status">loading...</div><br>
+  <button id="play" disabled>Play real viseme timeline (existing pipeline)</button>
+</div>
+<script type="module">
+import { TalkingHead } from "talkinghead";
+
+const statusEl = document.getElementById('status');
+const head = new TalkingHead(document.getElementById('avatar'), { cameraView: 'upper' });
+
+let timeline, audioBuffer, mesh;
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+async function init() {
+  await head.showAvatar({ url: './TalkingHead/avatars/brunette.glb', body: 'F', avatarMood: 'neutral' });
+  // find the face mesh directly, the same way the existing renderer.ts does, to verify
+  // and drive viseme_* morph targets ourselves (bypassing TalkingHead's own TTS-oriented
+  // speak() API, which this POC intentionally does not use/depend on).
+  head.armature.traverse((o) => { if (o.morphTargetDictionary && o.morphTargetDictionary.viseme_aa !== undefined) mesh = o; });
+  statusEl.textContent = mesh ? `avatar ready. viseme morph targets found: ${Object.keys(mesh.morphTargetDictionary).filter(k=>k.startsWith('viseme_')).length}` : 'avatar ready, NO viseme targets found';
+
+  const [tlRes, wavRes] = await Promise.all([fetch('./timeline.json'), fetch('./parity-audio.wav')]);
+  timeline = await tlRes.json();
+  const wavBytes = await wavRes.arrayBuffer();
+  audioBuffer = await audioCtx.decodeAudioData(wavBytes);
+  document.getElementById('play').disabled = false;
+  window.__audioBuffer = audioBuffer;
+  window.__ready = true;
+}
+
+document.getElementById('play').addEventListener('click', async () => {
+  try {
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+    statusEl.textContent = 'audioCtx.state=' + audioCtx.state + ' calling speakAudio...';
+    const r = head.speakAudio({ audio: audioBuffer, visemes: timeline.visemes, vtimes: timeline.vtimes, vdurations: timeline.vdurations });
+    statusEl.textContent += ' | speakAudio returned: ' + typeof r;
+    window.__speakError = null;
+  } catch (err) {
+    window.__speakError = err.message + '\n' + err.stack;
+    statusEl.textContent = 'ERROR: ' + err.message;
+  }
+});
+
+init();
+window.__head = head; // for puppeteer screenshot/inspection
+</script>
+</body>
+</html>
